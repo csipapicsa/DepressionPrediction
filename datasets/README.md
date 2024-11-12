@@ -19,7 +19,6 @@ The SDS (Zung Self-Rating Depression Scale) scoring typically works as follows:
 Raw scores range from 20-80
 The standardized scores (in new_label.txt = raw score × 1.25) range from 25-100
 
-
 For the standardized scores (new_label.txt), the interpretation is usually:
 
 Below 50: Normal range

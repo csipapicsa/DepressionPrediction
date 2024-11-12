@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
 import matplotlib.pyplot as plt
+import time
 
 # inbalanced learning
 from imblearn.over_sampling import SMOTE
@@ -14,6 +15,13 @@ from imblearn.pipeline import Pipeline
 # xgboost
 from sklearn.model_selection import GridSearchCV
 import xgboost as xgb
+
+# train on cuda
+params = {
+    "tree_method": "hist",  # Using 'hist' as the tree method
+    "device": "cuda",  # Using CUDA for GPU computing instead of 'gpu_id'
+    "verbosity": 2  # Higher verbosity for more detailed logging
+}
 
 
 EATD_AUDICO_DICT = {"negative": 'negative_out.wav', 
@@ -289,28 +297,57 @@ def feature_importance_xgboost(model, number_of_features=10):
         print(f"{feature}: {value:.4f}")
     """
 
-def train_xgboost_grid_search_simple(X_train, y_train):
+def train_xgboost_grid_search_simple(X_train, y_train, use_cuda=True):
+    print("     TRAIN STARTS")
     """Train XGBoost model with hyperparameter tuning and evaluate it."""
+    # measuring running time:
+    start_time = time.time()
     
     # Define parameter grid for tuning
-    param_grid = {
-        'max_depth': [3, 4, 5],
-        'learning_rate': [0.01, 0.1],
-        'n_estimators': [100, 200],
-        'min_child_weight': [1, 3],
-        'gamma': [0, 0.1],
-        'subsample': [0.8, 0.9],
-        'colsample_bytree': [0.8, 0.9]
-    }
+    NUM_CLASSES = len(np.unique(y_train))  
+
+    if use_cuda:
+        param_grid = {
+            'max_depth': [3, 4, 5],
+            'learning_rate': [0.01, 0.1],
+            'n_estimators': [100, 200],
+            'min_child_weight': [1, 3],
+            'gamma': [0, 0.1],
+            'subsample': [0.8, 0.9],
+            'colsample_bytree': [0.8, 0.9],
+            'tree_method': ['gpu_hist'],  # Use GPU optimized histogram algorithm
+            'predictor': ['gpu_predictor']  # Use GPU for prediction
+        }
     
-    # Create XGBoost classifier
-    xgb_clf = xgb.XGBClassifier(
-        objective='multi:softmax',
-        num_class=4,  # number of depression categories
-        random_state=42,
-        use_label_encoder=False,
-        eval_metric='mlogloss'
-    )
+        # Create XGBoost classifier
+        xgb_clf = xgb.XGBClassifier(
+            objective='multi:softmax',
+            num_class=NUM_CLASSES,  # number of depression categories
+            random_state=42,
+            use_label_encoder=False,
+            eval_metric='mlogloss',
+            tree_method='gpu_hist',  # Ensures the model uses the GPU histogram method
+            predictor='gpu_predictor'  # Ensures predictions are on GPU
+        )
+    else:
+        param_grid = {
+            'max_depth': [3, 4, 5],
+            'learning_rate': [0.01, 0.1],
+            'n_estimators': [100, 200],
+            'min_child_weight': [1, 3],
+            'gamma': [0, 0.1],
+            'subsample': [0.8, 0.9],
+            'colsample_bytree': [0.8, 0.9]
+        }
+
+        # Create XGBoost classifier
+        xgb_clf = xgb.XGBClassifier(
+            objective='multi:softmax',
+            num_class=NUM_CLASSES,  # number of depression categories
+            random_state=42,
+            use_label_encoder=False,
+            eval_metric='mlogloss'
+        )
     
     # Perform grid search with cross-validation
     grid_search = GridSearchCV(
@@ -331,6 +368,9 @@ def train_xgboost_grid_search_simple(X_train, y_train):
     print("\nBest parameters found:")
     for param, value in grid_search.best_params_.items():
         print(f"{param}: {value}")
+
+    end = time.time()
+    print(f"Training time: {end - start_time:.2f} seconds")
 
     return best_model
 
@@ -381,7 +421,7 @@ def extract_audio_features_simple(file_path):
         else:
             feature_vector.append(value)
             
-    return np.array(feature_vector), None
+    return np.array(feature_vector)
 
 
 def extract_audio_features_complex(file_path):
@@ -517,8 +557,19 @@ def print_feature_descriptions():
         print(f"\n{feature}:")
         print(f"  {description}")
 
-def process_audio_files(base_path, df, sentiments=['negative', 'neutral', 'positive'], method='simple'):
-    """Process audio files for given dataframe entries, skipping problematic files."""
+def process_audio_files(base_path, df, sentiments=['negative', 'neutral', 'positive'], method='simple', classification='binary'):
+    print(f"Processing inputs: base_path={base_path}, sentiments={sentiments}, method={method}, classification={classification}")
+    """Process audio files for given dataframe entries, skipping problematic files.
+    Parameters:
+        base_path (str): Base path to audio files.
+        df (DataFrame): DataFrame containing audio file information.
+        sentiments (list): List of sentiments to process.
+        method (str): Method to use for feature extraction.
+        classification (str): Type of classification to perform. "binary" or "multiclass".
+    Returns:
+        features_list (list): List of feature vectors.
+        labels (list): List of labels.
+    """
     features_list = []
     labels = []
     processed_folders = []
@@ -565,7 +616,11 @@ def process_audio_files(base_path, df, sentiments=['negative', 'neutral', 'posit
         # Only add to dataset if all files were processed successfully
         if all_files_processed:
             features_list.append(feature_set)
-            labels.append(row['depression_category_int'])
+            if classification == 'binary':
+                labels.append(row['depression_category_int_binary'])
+            elif classification == 'multiclass':
+                labels.append(row['depression_category_int'])
+            
             processed_folders.append(folder)
     
     # Print summary of processing
