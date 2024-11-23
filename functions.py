@@ -1,11 +1,16 @@
 import os
+# audio
 import librosa
+import parselmouth
+
+# etc
 import numpy as np
 import pandas as pd
 from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
 import matplotlib.pyplot as plt
 import time
+from copy import deepcopy
 
 # inbalanced learning
 from imblearn.over_sampling import SMOTE
@@ -27,6 +32,49 @@ params = {
 EATD_AUDICO_DICT = {"negative": 'negative_out.wav', 
                 "neutral": 'neutral_out.wav', 
                 "positive": 'positive_out.wav'}
+
+def save_audio_features_data(X_train, y_train, feature_path, label_path):
+    np.save(feature_path, X_train)  # Saves the feature array to a binary file
+    pd.DataFrame({'label': y_train}).to_csv(label_path, index=False)  # Saves labels to a CSV file
+
+def _save_audio_features_data_best_paper(features_list, labels, feature_path, label_path):
+    # Convert list of dictionaries to arrays
+    aggregated_features = np.array([f['aggregated_features'] for f in features_list])
+    mfcc_spectrums = np.array([f['mfcc_spectrum'] for f in features_list])
+    
+    # Save as a compressed .npz file to handle multiple arrays
+    np.savez(feature_path, 
+             aggregated_features=aggregated_features,
+             mfcc_spectrums=mfcc_spectrums)
+    
+    # Save labels
+    pd.DataFrame({'label': labels}).to_csv(label_path, index=False)
+
+# To load later:
+def load_mfcc_data(mfcc_path):
+    data = np.load(mfcc_path)
+    return [data[f'mfcc_{i}'] for i in range(len(data.files))]
+
+def save_audio_features_data_best_paper(features_list, labels, feature_path, label_path):
+    # Save aggregated features
+    aggregated_features = np.array([f['aggregated_features'] for f in features_list])
+    np.save(feature_path, aggregated_features)
+    
+    # Save MFCC spectrums separately
+    mfcc_path = feature_path.replace('.npy', '_mfcc.npz')
+    
+    # Save each MFCC spectrum with its index
+    mfcc_dict = {f'mfcc_{i}': f['mfcc_spectrum'] for i, f in enumerate(features_list)}
+    np.savez(mfcc_path, **mfcc_dict)
+    
+    # Save labels
+    pd.DataFrame({'label': labels}).to_csv(label_path, index=False)
+
+
+def load_audio_features_data(feature_path, label_path):
+    X_train = np.load(feature_path)  # Loads features from the binary file
+    y_train = pd.read_csv(label_path)['label'].values  # Loads labels from the CSV file
+    return X_train, y_train
 
 def train_balanced_xgboost_grid_search(X_train, y_train, balance_strategy='combine'):
     """
@@ -391,6 +439,46 @@ def confusion_matrix_report(true_lables, pred_labels, labels):
     plt.xlabel('Predicted Label')
     plt.show()
 
+def extract_audio_features_mfcc(file_path):
+    """Extract all audio features used in the paper"""
+    # Load audio
+    y, sr = librosa.load(file_path, duration=30)
+
+    # MFCC features (they used MFC with multiple features)
+    mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40)  # They used 40 MFCCs
+    
+    # Additional features mentioned in paper
+    spectral_centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
+    spectral_bandwidth = librosa.feature.spectral_bandwidth(y=y, sr=sr)
+    spectral_rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr)
+    zero_crossing_rate = librosa.feature.zero_crossing_rate(y)
+    
+    # Calculate statistics
+    features = {
+        'mfcc_mean': np.mean(mfccs, axis=1),
+        'mfcc_std': np.std(mfccs, axis=1),
+        'spectral_centroid_mean': np.mean(spectral_centroid),
+        'spectral_bandwidth_mean': np.mean(spectral_bandwidth),
+        'spectral_rolloff_mean': np.mean(spectral_rolloff),
+        'zero_crossing_rate_mean': np.mean(zero_crossing_rate),
+        'pitch': librosa.piptrack(y=y, sr=sr)[1].mean(),
+        'energy': np.sum(y**2),
+        'speech_rate': len(librosa.onset.onset_detect(y=y, sr=sr)) / (len(y)/sr)
+    }
+
+    # Flatten
+    feature_vector = []
+    for value in features.values():
+        if isinstance(value, np.ndarray):
+            feature_vector.extend(value)
+        else:
+            feature_vector.append(value)
+            
+    return {
+        'aggregated_features': np.array(feature_vector),
+        'mfcc_spectrum': mfccs  # Full MFCC spectrum (40 x time_steps)
+    }
+
 def extract_audio_features_simple(file_path):
     """Extract relevant audio features using librosa."""
     # Load the audio file
@@ -422,6 +510,37 @@ def extract_audio_features_simple(file_path):
             feature_vector.append(value)
             
     return np.array(feature_vector)
+
+def extract_audio_features_best(audio_file):
+    # Load the audio file with parselmouth
+    sound = parselmouth.Sound(audio_file)
+    
+    # Fundamental Frequency (F0)
+    pitch = sound.to_pitch()
+    f0 = pitch.selected_array['frequency']
+    
+    # Harmonic-to-Noise Ratio (HNR)
+    hnr = sound.to_harmonicity()
+    
+    # Mel-frequency cepstral coefficients (MCEP)
+    y, sr = librosa.load(audio_file, sr=None)
+    mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=24)
+    
+    # Spectral Slope
+    spectral_slope = librosa.feature.spectral_slope(y=y, sr=sr)
+    
+    # Extract other features using Praat through parselmouth or other libraries
+    
+    features = {
+        'f0_mean': np.nanmean(f0),
+        'f0_std': np.nanstd(f0),
+        'hnr_mean': np.mean(hnr.values),
+        'mfccs_mean': np.mean(mfccs, axis=1),
+        'spectral_slope_mean': np.mean(spectral_slope)
+        # Add other extracted features
+    }
+    return features
+
 
 
 def extract_audio_features_complex(file_path):
@@ -557,7 +676,12 @@ def print_feature_descriptions():
         print(f"\n{feature}:")
         print(f"  {description}")
 
-def process_audio_files(base_path, df, sentiments=['negative', 'neutral', 'positive'], method='simple', classification='binary'):
+def process_audio_files(base_path, df, 
+                        sentiments=['negative', 'neutral', 'positive'], 
+                        method='simple', 
+                        classification='binary',
+                        dataset="EATD",
+                        debug_mode=False):
     print(f"Processing inputs: base_path={base_path}, sentiments={sentiments}, method={method}, classification={classification}")
     """Process audio files for given dataframe entries, skipping problematic files.
     Parameters:
@@ -574,55 +698,92 @@ def process_audio_files(base_path, df, sentiments=['negative', 'neutral', 'posit
     labels = []
     processed_folders = []
     skipped_files = []
-    
-    for _, row in df.iterrows():
-        folder = row['folder']
-        folder_path = f"{base_path}/{folder}"
-        
-        # Check if folder exists
-        if not os.path.exists(folder_path):
-            skipped_files.append((folder, "Folder not found"))
-            continue
-            
-        # Process each type of audio file
-        feature_set = []
-        all_files_processed = True
 
-        audio_files = [EATD_AUDICO_DICT[sentiment] for sentiment in sentiments]
 
-        for audio_type in audio_files:
-            file_path = f"{folder_path}/{audio_type}"
+    if dataset  == "EATD":
+        for _, row in df.iterrows():
+            folder = row['folder']
+            folder_path = f"{base_path}/{folder}"
             
-            if not os.path.exists(file_path):
-                skipped_files.append((folder, f"Missing file: {audio_type}"))
-                all_files_processed = False
+            # Check if folder exists
+            if not os.path.exists(folder_path):
+                skipped_files.append((folder, "Folder not found"))
                 continue
                 
-            try:
-                if method == 'simple':
-                    features = extract_audio_features_simple(file_path)
-                    feature_set.extend(features)
-                elif method == 'complex':
-                    features = extract_audio_features_complex(file_path)
-                    feature_set.extend(features)
-                else:
-                    raise ValueError(f"Invalid method: {method}")
-    
-            except Exception as e:
-                skipped_files.append((folder, f"Error processing {audio_type}: {str(e)}"))
-                all_files_processed = False
-                continue
+            # Process each type of audio file
+            feature_set = []
+            all_files_processed = True
+
+            audio_files = [EATD_AUDICO_DICT[sentiment] for sentiment in sentiments]
+
+            for audio_type in audio_files:
+                file_path = f"{folder_path}/{audio_type}"
+                
+                if not os.path.exists(file_path):
+                    skipped_files.append((folder, f"Missing file: {audio_type}"))
+                    all_files_processed = False
+                    continue
+                    
+                try:
+                    if method == 'simple':
+                        features = extract_audio_features_simple(file_path)
+                        feature_set.extend(features)
+                    elif method == 'complex':
+                        # features = extract_audio_features_complex(file_path)
+                        features = extract_audio_features_best(file_path)
+
+                        feature_set.extend(features)
+                    else:
+                        raise ValueError(f"Invalid method: {method}")
         
-        # Only add to dataset if all files were processed successfully
-        if all_files_processed:
-            features_list.append(feature_set)
-            if classification == 'binary':
-                labels.append(row['depression_category_int_binary'])
-            elif classification == 'multiclass':
-                labels.append(row['depression_category_int'])
+                except Exception as e:
+                    skipped_files.append((folder, f"Error processing {audio_type}: {str(e)}"))
+                    all_files_processed = False
+                    continue
             
-            processed_folders.append(folder)
+            # Only add to dataset if all files were processed successfully
+            if all_files_processed:
+                features_list.append(feature_set)
+                if classification == 'binary':
+                    labels.append(row['depression_category_int_binary'])
+                elif classification == 'multiclass':
+                    labels.append(row['depression_category_int'])
+                
+                processed_folders.append(folder)
     
+    elif dataset == "DAIC":
+        feature_set = []
+        for _, row in df.iterrows():
+            patient = row['Participant_ID']
+            depression_category = row['PHQ8_Binary']
+            # labels.append(row['PHQ8_Binary'])
+            # print(patient)
+            # list patient related files in the folder. wav file name starts with the patiuent id
+            patient_files = [f for f in os.listdir(base_path) if f.startswith(str(patient)) and f.endswith('.wav')]
+            # print(patient_files)
+            for f in patient_files:
+
+                file_path = f"{base_path}/{f}"
+                if debug_mode:
+                    print(f"Processing file: {file_path}")
+                try:
+                    if method == 'simple':
+                        features = extract_audio_features_simple(file_path)
+                        # feature_set.extend(features)
+                        features_list.append(features)
+                        labels.append(depression_category)
+                    elif method == 'complex':
+                        features = extract_audio_features_complex(file_path)
+                        # feature_set.extend(features)
+                        features_list.append(features)
+                        labels.append(depression_category)
+                    else:
+                        raise ValueError(f"Invalid method: {method}")
+        
+                except Exception as e:
+                    skipped_files.append((file_path, f"Error processing {audio_type}: {str(e)}"))
+                    continue
+        
     # Print summary of processing
     print(f"\nProcessing Summary:")
     print(f"Successfully processed: {len(processed_folders)} folders")
@@ -638,3 +799,170 @@ def process_audio_files(base_path, df, sentiments=['negative', 'neutral', 'posit
         return None, None
     
     return np.array(features_list), np.array(labels)
+
+
+def feature_extraction_and_save(base_path, df, 
+                        sentiments=['negative', 'neutral', 'positive'], 
+                        method='simple', 
+                        classification='binary',
+                        dataset="EATD",
+                        debug_mode=False,
+                        save_features_per_patient=True,
+                        filename_prefix=""):
+    print(f"Processing inputs: base_path={base_path}, sentiments={sentiments}, method={method}, classification={classification}")
+    """Process audio files for given dataframe entries, skipping problematic files.
+    Parameters:
+        base_path (str): Base path to audio files.
+        df (DataFrame): DataFrame containing audio file information.
+        sentiments (list): List of sentiments to process.
+        method (str): Method to use for feature extraction.
+        classification (str): Type of classification to perform. "binary" or "multiclass".
+    Returns:
+        features_list (list): List of feature vectors.
+        labels (list): List of labels.
+    """
+    features_list = []
+    labels = []
+    processed_folders = []
+    skipped_files = []
+
+
+    if dataset  == "EATD":
+        for _, row in df.iterrows():
+            folder = row['folder']
+            folder_path = f"{base_path}/{folder}"
+            
+            # Check if folder exists
+            if not os.path.exists(folder_path):
+                skipped_files.append((folder, "Folder not found"))
+                continue
+                
+            # Process each type of audio file
+            feature_set = []
+            all_files_processed = True
+
+            audio_files = [EATD_AUDICO_DICT[sentiment] for sentiment in sentiments]
+
+            for audio_type in audio_files:
+                file_path = f"{folder_path}/{audio_type}"
+                
+                if not os.path.exists(file_path):
+                    skipped_files.append((folder, f"Missing file: {audio_type}"))
+                    all_files_processed = False
+                    continue
+                    
+                try:
+                    if method == 'simple':
+                        features = extract_audio_features_simple(file_path)
+                        feature_set.extend(features)
+                    elif method == 'complex':
+                        # features = extract_audio_features_complex(file_path)
+                        features = extract_audio_features_best(file_path)
+
+                        feature_set.extend(features)
+                    else:
+                        raise ValueError(f"Invalid method: {method}")
+        
+                except Exception as e:
+                    skipped_files.append((folder, f"Error processing {audio_type}: {str(e)}"))
+                    all_files_processed = False
+                    continue
+            
+            # Only add to dataset if all files were processed successfully
+            if all_files_processed:
+                features_list.append(feature_set)
+                if classification == 'binary':
+                    labels.append(row['depression_category_int_binary'])
+                elif classification == 'multiclass':
+                    labels.append(row['depression_category_int'])
+                
+                processed_folders.append(folder)
+    
+    elif dataset == "DAIC":
+        feature_set = []
+        prev_patient = ""
+        for _, row in df.iterrows():
+            patient = row['Participant_ID']
+            if prev_patient == "":
+                prev_patient = deepcopy(patient)
+            else:
+                None
+            if save_features_per_patient:
+                if patient != prev_patient:
+                    
+                    feature_path = f"{base_path}/{filename_prefix}_features_{method}_{prev_patient}.npy"
+                    #print(feature_path)
+                    #print(features_list)
+                    label_path = f"{base_path}/{filename_prefix}_label_{method}_{prev_patient}.csv"
+                    #print(label_path)
+                    print(prev_patient)
+                    print(labels)
+                    if filename_prefix == "best_paper":
+                        print(" POIIIIINGGG ")
+                        save_audio_features_data_best_paper(features_list, np.array(labels), feature_path, label_path)
+                    else:
+                        save_audio_features_data(np.array(features_list), np.array(labels), feature_path, label_path)
+                    features_list = []
+                    labels = []
+                    prev_patient = deepcopy(patient)
+                    # break
+                else:
+                    None
+            else:
+                None
+            if classification == 'binary':
+                depression_category = row['PHQ8_Binary']
+            elif classification == 'multiclass':
+                depression_category = row['PHQ8_Score']
+            else:
+                raise ValueError(f"Invalid classification: {classification}")
+            
+            # labels.append(row['PHQ8_Binary'])
+            # print(patient)
+            # list patient related files in the folder. wav file name starts with the patiuent id
+            patient_files = [f for f in os.listdir(base_path) if f.startswith(str(patient)) and f.endswith('.wav')]
+            # print(patient_files)
+            for f in patient_files:
+
+                file_path = f"{base_path}/{f}"
+                if debug_mode:
+                    print(f"Processing file: {file_path}")
+                try:
+                    if method == 'simple':
+                        features = extract_audio_features_simple(file_path)
+                        # feature_set.extend(features)
+                        features_list.append(features)
+                        labels.append(depression_category)
+                    elif method == 'complex':
+                        features = extract_audio_features_complex(file_path)
+                        # feature_set.extend(features)
+                        features_list.append(features)
+                        labels.append(depression_category)
+                    elif method == 'only_mfcc':
+                        features = extract_audio_features_mfcc(file_path)
+                        features_list.append(features)
+                        labels.append(depression_category)
+                    else:
+                        raise ValueError(f"Invalid method: {method}")
+        
+                except Exception as e:
+                    skipped_files.append((file_path, f"Error processing: {str(e)}"))
+                    continue
+        
+    # Print summary of processing
+    print(f"\nProcessing Summary:")
+    print(f"Successfully processed: {len(processed_folders)} folders")
+    print(f"Skipped: {len(skipped_files)} files")
+    
+    if skipped_files:
+        print("\nSkipped Files Details:")
+        for folder, reason in skipped_files:
+            print(f"Folder {folder}: {reason}")
+    
+    if not features_list:
+        print("No files were successfully processed!")
+        return None, None
+    
+    return np.array(features_list), np.array(labels)
+
+

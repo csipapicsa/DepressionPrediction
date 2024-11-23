@@ -1,0 +1,204 @@
+Looking at the paper, for their Transformer-CNN-CNN (TCC) model, they used the full MFCC spectrum with 40 coefficients over time. Specifically, they used:
+
+40-dimensional low-level MFCC features as input
+Preserved the temporal dimension ("T × d", where d=40)
+Used the full spectrogram for analysis, not just statistical features
+Window length of 25ms and window shift of 10ms
+Speech segments of 9 seconds length
+
+This differs from just using statistical measures like mean/std, as they wanted to preserve temporal information for their transformer module to analyze sequential patterns. CopyRetryGwait a second, this is the DAIC-WOZ dataet description:Audio
+features
+Audio
+features
+are
+extracted
+using
+the
+COVAREP
+toolbox
+(v.
+1.3.2)
+available
+at:
+https://github.com/covarep/covarep
+Files:
+• XXX_COVAREP.csv
+(scrubbed):
+The
+following
+features
+are
+extracted:
+o All
+audio
+features
+(including
+Formants;
+see
+below)
+are
+every
+10ms.
+Hence,
+the
+audio
+features
+are
+sampled
+at
+100Hz.
+o F0,
+VUV,
+NAQ,
+QOQ,
+H1H2,
+PSP,
+MDQ,
+peakSlope,
+Rd,
+Rd_conf,
+MCEP_0-­‐24,
+HMPDM_0-­‐24,
+HMPDD_0-­‐12
+o Descriptions
+for
+each
+of
+these
+features
+can
+be
+found
+on
+the
+COVAREP
+website
+and
+in
+the
+provided
+COVAREP
+publication.
+In
+addition,
+detailed
+information
+about
+the
+exact
+procedures
+of
+feature
+extraction
+are
+provided
+in
+the
+respective
+publications
+cited
+in
+the
+COVAREP
+scripts
+provided
+via
+github.
+o One
+important
+aspect
+is
+that
+VUV
+(voiced/unvoiced)
+provides
+a
+flag
+({0,1})
+if
+the
+current
+segment
+is
+voiced
+or
+unvoiced.
+In
+unvoiced
+case,
+i.e.
+VUV
+=
+0,
+the
+vocal
+folds
+are
+detected
+to
+not
+be
+vibrating,
+hence
+values
+such
+as
+F0,
+NAQ,
+QOQ,
+H1H2,
+PSP,
+MDQ,
+peakSlope,
+and
+Rd
+should
+not
+be
+utilized.
+o Scrubbed
+entries
+are
+set
+to
+zeros.
+• XXX_FORMANT.csv
+(scrubbed):
+Contains
+the
+first
+5
+formants,
+i.e.
+the
+vocal
+tract
+resonance
+frequencies,
+that
+are
+tracked
+throughout
+the
+interview.
+o Scrubbed
+entries
+are
+set
+to
+zeros.So I believe they already extrracted these features? Or not?EditYes, you're correct - in the DAIC-WOZ dataset, these features are already pre-extracted using COVAREP. Looking at the paper more carefully, they used these pre-extracted features rather than computing MFCC from raw audio. They specifically used:
+
+The features from XXX_COVAREP.csv which include:
+
+
+MCEP_0-24 (Mel cepstral coefficients)
+HMPDM_0-24 and HMPDD_0-12
+Other acoustic features (F0, NAQ, QOQ, etc.)
+
+The key distinction is that what I initially thought was raw MFCC processing was actually them using the pre-computed features sampled at 100Hz (every 10ms) from COVAREP.
+This explains their input format of "T × d" where:
+
+T is the time dimension (samples every 10ms)
+d is the feature dimension (using the pre-extracted COVAREP features)
+
+So you don't need to extract MFCC features yourself - you can directly use the provided COVAREP features from the CSV files.
