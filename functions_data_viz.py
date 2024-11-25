@@ -4,9 +4,12 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, precision_recall_fscore_support
 from sklearn.utils.multiclass import unique_labels
+import datetime
+
 
 # decrapted
-def plot_confusion_matrices_original(clf, X_train, y_train, X_dev, y_dev):
+def plot_confusion_matrices_original(clf, X_train, y_train, X_dev, y_dev,
+                                     show_plot="all"):
    """
    Plot confusion matrices for both training and dev sets
    """
@@ -44,7 +47,7 @@ def plot_confusion_matrices_original(clf, X_train, y_train, X_dev, y_dev):
 
 
 # works well for binary
-def _plot_confusion_matrices(clf, X_train, y_train, X_dev, y_dev):
+def plot_confusion_matrices_binary(clf, X_train, y_train, X_dev, y_dev):
     """
     Plot confusion matrices for both training and dev sets with rates in the cells.
     """
@@ -76,7 +79,7 @@ def _plot_confusion_matrices(clf, X_train, y_train, X_dev, y_dev):
                           [f"FNR: {fnr_dev:.2f}", f"TPR: {tpr_dev:.2f}"]])
     
     # Create figure with two subplots
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
     
     # Plot training confusion matrix
     sns.heatmap(cm_train, annot=annot_train, fmt='', ax=ax1, cmap='Blues')
@@ -91,6 +94,11 @@ def _plot_confusion_matrices(clf, X_train, y_train, X_dev, y_dev):
     ax2.set_ylabel('True Label')
     
     plt.tight_layout()
+
+        # Save the plot as PDF
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    plt.savefig(f"{today}_confusion_matrices.pdf", format='pdf')
+
     plt.show()
     
     # Print classification metrics for both sets
@@ -103,7 +111,8 @@ def _plot_confusion_matrices(clf, X_train, y_train, X_dev, y_dev):
 
 
 
-def plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev):
+def _plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev,
+                                 show_plot="all"):
     """
     Plot confusion matrices for both training and dev sets with detailed metrics.
     """
@@ -120,7 +129,10 @@ def plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev):
     cm_dev_normalized = cm_dev.astype('float') / cm_dev.sum(axis=1)[:, np.newaxis]
     
     # Create figure with two subplots
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    if show_plot == "all":
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+    elif show_plot == "train":
+        fig, (ax1) = plt.subplots(1, 1, figsize=(6, 6))
     
     # Plot normalized training confusion matrix
     sns.heatmap(cm_train_normalized, annot=True, fmt=".2f", cmap='Blues', ax=ax1)
@@ -135,6 +147,9 @@ def plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev):
     ax2.set_ylabel('True Label')
     
     plt.tight_layout()
+            # Save the plot as PDF
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    plt.savefig(f"{today}_confusion_matrices.pdf", format='pdf')
     plt.show()
     
     # Print classification metrics for both sets
@@ -142,3 +157,85 @@ def plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev):
     print(classification_report(y_train, y_train_pred, target_names=[str(lbl) for lbl in unique_labels(y_train, y_train_pred)]))
     print("\nDev Set Metrics:")
     print(classification_report(y_dev, y_dev_pred, target_names=[str(lbl) for lbl in unique_labels(y_dev, y_dev_pred)]))
+
+def plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev, show_plot="all", save=True):
+    """
+    Plot confusion matrices for training and/or dev sets with detailed metrics.
+    """
+    # Get predictions
+    y_train_pred = clf.predict(X_train)
+    y_dev_pred = clf.predict(X_dev)
+    
+    # Calculate confusion matrices
+    cm_train = confusion_matrix(y_train, y_train_pred)
+    cm_dev = confusion_matrix(y_dev, y_dev_pred)
+    
+    # Normalize the confusion matrices for better comparison
+    cm_train_normalized = cm_train.astype('float') / cm_train.sum(axis=1)[:, np.newaxis]
+    cm_dev_normalized = cm_dev.astype('float') / cm_dev.sum(axis=1)[:, np.newaxis]
+
+    # Create annotations with percentage and count
+    annot_train = np.array([["{:.0%}\n({})".format(data, count) 
+                             for data, count in zip(row, count_row)] 
+                            for row, count_row in zip(cm_train_normalized, cm_train)])
+    annot_dev = np.array([["{:.0%}\n({})".format(data, count) 
+                           for data, count in zip(row, count_row)] 
+                          for row, count_row in zip(cm_dev_normalized, cm_dev)])
+    
+    # Create figure with appropriate subplots
+    if show_plot == "all":
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(5, 2))
+        # Plot normalized training confusion matrix
+        sns.heatmap(cm_train_normalized, annot=annot_train, fmt='', cmap='Blues', ax=ax1)
+        ax1.set_title('Training Set Confusion Matrix', fontsize=8)
+        ax1.set_xlabel('Predicted Label', fontsize=8)
+        ax1.set_ylabel('True Label', fontsize=8)
+        ax1.tick_params(axis='y', labelsize=8)  # Adjusting y-axis label size
+
+        
+        # Plot normalized dev/test confusion matrix
+        sns.heatmap(cm_dev_normalized, annot=annot_dev, fmt='', cmap='Blues', ax=ax2)
+        ax2.set_title('Dev Set Confusion Matrix', fontsize=8)
+        ax2.set_xlabel('Predicted Label', fontsize=8)
+        ax2.set_ylabel('True Label',    fontsize=8)
+        # ax2.tick_params(axis='y', labelsize=4)
+        for label in ax1.get_yticklabels():
+            label.set_size(3)  # Smaller font size for y-axis labels
+    elif show_plot == "test":
+        fig, ax2 = plt.subplots(1, 1, figsize=(3, 3))
+        # Plot normalized dev/test confusion matrix
+        sns.heatmap(cm_dev_normalized, annot=annot_dev, fmt='', cmap='Blues', ax=ax2)
+        ax2.set_title('Dev Set Confusion Matrix', fontsize=10)
+        ax2.set_xlabel('Predicted Label',fontsize=10)
+        ax2.set_ylabel('True Label',fontsize=10)
+        ax2.tick_params(axis='y', labelsize=10)
+    elif show_plot == "train":
+        fig, ax1 = plt.subplots(1, 1, figsize=(3, 3))
+        # Plot normalized training confusion matrix
+        sns.heatmap(cm_train_normalized, annot=annot_train, fmt='', cmap='Blues', ax=ax1)
+        ax1.set_title('Training Set Confusion Matrix', fontsize=10)
+        ax1.set_xlabel('Predicted Label',fontsize=10)
+        ax1.set_ylabel('True Label',fontsize=10)
+        ax1.tick_params(axis='y', labelsize=10)
+        
+
+    plt.tight_layout()
+    # Save the plot as PDF
+    if save:
+        today = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+        plt.savefig(f"{today}_{show_plot}_confusion_matrices.pdf", format='pdf')
+    else:
+        None
+    plt.show()
+    
+    # Print classification metrics for both sets
+    if show_plot == "all":
+        print("Training Set Metrics:")
+        print(classification_report(y_train, y_train_pred))
+        print("\nDev Set Metrics:")
+        print(classification_report(y_dev, y_dev_pred))
+    elif show_plot == "test":
+        print("Training Set Metrics:")
+        print(classification_report(y_train, y_train_pred))
+        print("\nDev Set Metrics:")
+        print(classification_report(y_dev, y_dev_pred))
