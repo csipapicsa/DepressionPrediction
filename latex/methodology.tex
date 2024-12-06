@@ -1,0 +1,31 @@
+\section{Methodology}
+
+\subsection{Data Preparation}
+
+PHQ8 values are organized to  multiclass\cite{kroenke2001phq}. The values are organized into binary values as well based on\cite{kroenke2009phq}. In case of EATD the SDS index the SDS index is categorized by and it is mapped to binary categories [CITE]. 
+
+For extrating features for the DT I have used Mel-Frequency Cepstral Coefficients (MFCCs)\cite{tiwari2010mfcc} features. 
+
+MFCCs are pivotal for analyzing the power spectrum of audio signals, particularly in tasks like speech recognition. The extraction involves transforming the audio signal from the time domain to the frequency domain using the Fast Fourier Transform (FFT) to capture frequency components. Subsequently, these components are mapped onto the mel scale via a mel filter bank that mimics the human auditory system's response more effectively than linearly-spaced frequency bands. The outputs of the mel filter bank are logged to approximate human perception of loudness, followed by a Discrete Cosine Transform (DCT) to de-correlate the log mel spectrum, resulting in MFCCs that represent the audio signal's timbral characteristics effectively.
+
+Additional spectral features such as centroid, bandwidth, and rolloff, alongside the zero-crossing rate and overall signal energy, are computed. These features, combined with the statistical mean and standard deviation across frames, form a comprehensive feature vector for each audio sample. This method captures not only the fundamental qualities of sound but also complex characteristics related to speech dynamics and tonal quality, rendering it suitable for emotion recognition from speech.
+
+For the audio preparation: No additional audio  was performed on the audio files before went under the MFCC analysis. In case of the DAIC the segments where the patient speaks are cut from the audio. Each chunks is goes under the audio extraction. Later on the min, avg and max values across all chunk per each patient are extracted and used to feed the DT. For CNN the whole MFCC spectrum is used. In case of EATD: the uncloeand sentences were used for audio extraction: neutral, positive and negative, meaning 3 values where averaged, min and so on. 
+
+
+% MODELS
+
+\subsection{Models}
+Two model will be built for the evaluation. One is a decission tree (DT) another one is a cnnn [CITE WHICH ONE]. 
+
+% DT 
+
+The determination of the optimal number of features and tree depth for the Decision Tree classifier is central to enhancing model performance and mitigating overfitting. The selection of the most predictive features is facilitated by an ANOVA-based feature ranking, which identifies features that significantly contribute to model accuracy. This feature selection process is integrated with depth tuning of the Decision Tree to find the optimal combination that yields the highest accuracy on the validation set.
+
+To address potential overfitting, we systematically explore tree depths ranging from 1 to 19, assessing the model's performance with varying numbers of top-ranked features at each depth. The evaluation metrics include F1-score and accuracy, with a particular emphasis on the weighted average F1-score due to the imbalanced nature of our dataset. This metric adjusts for label imbalance by weighting the F1-score of each class by its support (the number of true instances for each label). This approach ensures that our model's performance is robust across different class distributions and provides a more reliable indication of its generalization ability.
+
+The final model parameters—optimal feature count and tree depth—are selected based on their performance on the development set, aiming to maximize the weighted average F1-score while maintaining generalizability across the dataset.
+
+
+The CNN  CNN (from the best paper)
+
