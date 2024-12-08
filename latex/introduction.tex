@@ -1,14 +1,9 @@
 \section{Introduction}
-%\subsection{Background and Motivation}
-Depression is a significant global health concern affecting millions of people worldwide.\cite{WHO_Mental_Disorders_2019} Early detection and intervention are crucial for effective treatment. Traditional methods of depression assessment rely heavily on clinical interviews and self-reported questionnaires, This research explores the potential of automated depression detection through audio analysis, leveraging machine learning techniques to identify patterns in speech that may indicate depressive states.
 
-In this paper I have used EATD-Corpus\cite{shen2022automaticdepressiondetectionemotional} and Distress Analysis Interview Corpus - Wizard of Oz
-(DAIC-WOZ)\cite{Gratch2014}\cite{DAICWOZ}
+Depression affects millions globally and represents a significant public health issue\cite{WHO_Mental_Disorders_2019}. Early detection and intervention are critical for effective management and treatment. Traditionally, depression assessment has relied heavily on clinical interviews and self-reported measures, such as the PHQ-8\cite{phq8} and PHQ-9 questionnaire\cite{kroenke2001phq}. 
 
-%\subsection{Problem Statement}
-The challenge lies in accurately detecting depression from audio features while handling:
-\begin{itemize}
-    \item Class imbalance in depression severity categories
-    \item Complex relationship between audio characteristics and mental state
-    \item Need for interpretable results for clinical applications
-\end{itemize}
+This research aims to advance the field of psychiatric diagnostics by exploring the potential of audio analysis to detect depression. Utilizing machine learning algorithms, specifically Decision Tree and Convolutional Neural Network (CNN) models, this study analyzes vocal biomarkers within audio recordings from two distinct datasets: the Distress Analysis Interview Corpus - Wizard of Oz (DAIC)\cite{DAICWOZ} and the Emotional Audio-Textual Depression (EATD) Corpus \cite{shen2022automaticdepressiondetectionemotional}. These datasets offer source of vocal expressions aligned with validated depression assessments, providing a foundation for developing predictive models.
+
+The challenge of accurately detecting depression from audio features encompasses several critical issues. These include addressing the class imbalance across different depression severity categories, managing the variability in audio quality, and ensuring the generalizability of models beyond the training data. This study aims to analyze these relationships between audio characteristics and depression and explore the viability of audio-based depression detection as a supplementary tool to traditional methods.
+
+Despite the initial aim of utilizing machine learning to enhance the diagnosis of depression through audio analysis, this study reveals significant limitations. Key lessons include recognizing the efficiency of existing tools like the PHQ-8 and PHQ-9 questionnaires in predicting depression, which often outperform more complex machine learning approaches. Furthermore, this research underscores a critical flaw in many studies: using the same patients' audio samples for both training and testing, which, while improving model accuracy, fails to ensure generalizability to new individuals. These insights highlight the importance of methodological rigor and the need to prioritize practical generalization in future machine learning research.

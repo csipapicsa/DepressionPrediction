@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.12.3)  6 DEC 2024 20:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.12.3)  8 DEC 2024 17:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -530,14 +530,7 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count420
 \@quotereset=\count421
-(main.aux
-
-LaTeX Warning: Label `table:classification_report_dev' multiply defined.
-
-
-LaTeX Warning: Label `fig:confusion_matrices' multiply defined.
-
-)
+(main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -594,11 +587,10 @@ LaTeX Font Info:    ... okay on input line 40.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 40.
-(main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
- (E:\MikTex\tex/context/base/mkii\supp-pdf.mkii
+(E:\MikTex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count422
 \scratchdimen=\dimen173
@@ -632,10 +624,18 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
- (main.bbl)
+ (main.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                tcc
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
 Package biblatex Info: Reference section=0 on input line 40.
 Package biblatex Info: Reference segment=0 on input line 40.
-<images/0.ITU-logo.png, id=91, 272.217pt x 30.1125pt>
+<images/0.ITU-logo.png, id=3, 272.217pt x 30.1125pt>
 File: images/0.ITU-logo.png Graphic file (type png)
 <use images/0.ITU-logo.png>
 Package pdftex.def Info: images/0.ITU-logo.png  used on input line 43.
@@ -648,83 +648,212 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 43.
  (abstract.tex) (introduction.tex) (datasets.tex [1
 
-{C:/Users/Gergo Gyori/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/0.ITU-logo.png>]) (lit.tex
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 10.
-
-Excluding 'comment' comment.) (methodology.tex [2]) (experimental_setup.tex) (results.tex
+{C:/Users/Gergo Gyori/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/0.ITU-logo.png>]) (lit.tex [2]) (methodology.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 17.
+(Font)              <7> on input line 11.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 17.
+(Font)              <5> on input line 11.
+) (experimental_setup.tex
 
-Overfull \hbox (18.64043pt too wide) in paragraph at lines 17--26
- [][] 
- []
+LaTeX Warning: Citation 'tcc' on page 3 undefined on input line 8.
+
+) (results.tex
+
+LaTeX Warning: Reference `table:classification_report_train_daic' on page 3 undefined on input line 5.
 
 
-Overfull \hbox (18.64043pt too wide) in paragraph at lines 33--42
- [][] 
- []
+LaTeX Warning: Reference `fig:confusion_matrices_daic' on page 3 undefined on input line 5.
 
-<vis_pdf/daic_all_confusion_matrices.pdf, id=134, 361.35pt x 144.54pt>
+
+LaTeX Warning: Reference `table:classification_report_dev_daic' on page 3 undefined on input line 5.
+
+
+LaTeX Warning: Reference `table:classification_report_dev_daic' on page 3 undefined on input line 7.
+
+
+LaTeX Warning: Reference `table:classification_report_train_eatd' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Reference `table:classification_report_dev_eatd' on page 3 undefined on input line 9.
+
+<vis_pdf/daic_all_confusion_matrices.pdf, id=53, 361.35pt x 144.54pt>
 File: vis_pdf/daic_all_confusion_matrices.pdf Graphic file (type pdf)
 <use vis_pdf/daic_all_confusion_matrices.pdf>
 Package pdftex.def Info: vis_pdf/daic_all_confusion_matrices.pdf  used on input line 47.
-(pdftex.def)             Requested size: 281.68385pt x 112.67456pt.
-
-Overfull \hbox (30.60904pt too wide) in paragraph at lines 47--48
- [][] 
- []
-
-[3]
-Overfull \hbox (18.64043pt too wide) in paragraph at lines 62--71
- [][] 
- []
-
-
-Overfull \hbox (18.64043pt too wide) in paragraph at lines 79--88
- [][] 
- []
-
-<vis_pdf/eatd_all_confusion_matrices.pdf, id=144, 361.35pt x 144.54pt>
+(pdftex.def)             Requested size: 230.46576pt x 92.18547pt.
+<vis_pdf/eatd_all_confusion_matrices.pdf, id=54, 361.35pt x 144.54pt>
 File: vis_pdf/eatd_all_confusion_matrices.pdf Graphic file (type pdf)
 <use vis_pdf/eatd_all_confusion_matrices.pdf>
-Package pdftex.def Info: vis_pdf/eatd_all_confusion_matrices.pdf  used on input line 93.
-(pdftex.def)             Requested size: 281.68385pt x 112.67456pt.
+Package pdftex.def Info: vis_pdf/eatd_all_confusion_matrices.pdf  used on input line 94.
+(pdftex.def)             Requested size: 230.46576pt x 92.18547pt.
 
-Overfull \hbox (30.60904pt too wide) in paragraph at lines 93--94
- [][] 
- []
+LaTeX Warning: Reference `fig:train_test_split_problems' on page 3 undefined on input line 103.
 
-) (discussion.tex) (conclusion.tex) [4 <./vis_pdf/daic_all_confusion_matrices.pdf> <./vis_pdf/eatd_all_confusion_matrices.pdf>] [5] (main.aux)
+
+
+pdfTeX warning: pdflatex (file ./vis_pdf/Train Test problem.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<vis_pdf/Train Test problem.drawio.pdf, id=55, 326.17859pt x 327.14218pt>
+File: vis_pdf/Train Test problem.drawio.pdf Graphic file (type pdf)
+<use vis_pdf/Train Test problem.drawio.pdf>
+Package pdftex.def Info: vis_pdf/Train Test problem.drawio.pdf  used on input line 107.
+(pdftex.def)             Requested size: 230.46576pt x 231.14941pt.
+
+LaTeX Warning: Reference `fig:confusion_matrices_TCC_daic' on page 3 undefined on input line 112.
+
+
+LaTeX Warning: Reference `fig:training_TCC_daic' on page 3 undefined on input line 113.
+
+<vis_pdf/TCC_FINAL.pdf, id=57, 361.35pt x 144.54pt>
+File: vis_pdf/TCC_FINAL.pdf Graphic file (type pdf)
+<use vis_pdf/TCC_FINAL.pdf>
+Package pdftex.def Info: vis_pdf/TCC_FINAL.pdf  used on input line 118.
+(pdftex.def)             Requested size: 230.46576pt x 92.18547pt.
+<vis_pdf/TCC_model_perf.pdf, id=58, 377.86734pt x 280.0751pt>
+File: vis_pdf/TCC_model_perf.pdf Graphic file (type pdf)
+<use vis_pdf/TCC_model_perf.pdf>
+Package pdftex.def Info: vis_pdf/TCC_model_perf.pdf  used on input line 125.
+(pdftex.def)             Requested size: 230.46576pt x 170.82417pt.
+) (discussion.tex) (conclusion.tex)
+
+e:/GITHUB_E/DepressionPrediction/latex/main.tex:76: LaTeX Error: \begin{table} on input line 9 ended by \end{multicols}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.76 \end{multicols}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+e:/GITHUB_E/DepressionPrediction/latex/main.tex:76: Missing } inserted.
+<inserted text> 
+                }
+l.76 \end{multicols}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+e:/GITHUB_E/DepressionPrediction/latex/main.tex:76: LaTeX Error: \begin{table} on input line 9 ended by \end{multicols}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.76 \end{multicols}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+e:/GITHUB_E/DepressionPrediction/latex/main.tex:76: Missing } inserted.
+<inserted text> 
+                }
+l.76 \end{multicols}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+e:/GITHUB_E/DepressionPrediction/latex/main.tex:77: LaTeX Error: \begin{multicols} on input line 46 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 \end{document}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[3] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3B6D8A33FD3454573BA67CC501370595;2882.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  5A1C2480E1C06F33DD4122EB2CB8D0F0;772.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
- ) 
+ )
+(\end occurred inside a group at level 2)
+
+### semi simple group (level 2) entered at line 47 (\begingroup)
+### semi simple group (level 1) entered at line 46 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 19017 strings out of 474486
- 336989 string characters out of 5760150
- 1951542 words of memory out of 5000000
- 41047 multiletter control sequences out of 15000+600000
+ 18982 strings out of 474486
+ 337016 string characters out of 5760150
+ 1966542 words of memory out of 5000000
+ 41042 multiletter control sequences out of 15000+600000
  564380 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,81p,1085b,1777s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Gergo Gyori\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (5 pages, 251476 bytes).
+ 75i,12n,81p,1484b,2012s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{cite.0@kroenke2009phq} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@kantamaneni2023speech} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@yin2023depression} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@ishimaru2023classification} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@homsiang2022classification} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@liu2024diagnostic} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@SDS} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@shen2022automaticdepressiondetectionemotional} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@DAICWOZ} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@kroenke2001phq} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@phq8} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{cite.0@WHO_Mental_Disorders_2019} has been referenced but does not exist, replaced by a fixed one
+
+ <C:\Users\Gergo Gyori\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb>
+Output written on main.pdf (3 pages, 129867 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 500000)
- 192 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

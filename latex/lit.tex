@@ -1,45 +1,14 @@
 \section{Literature Review}
-During the literature review, I primarily focused on the DAIC-WOZ dataset for several reasons. Firstly, the EATD-Corpus, while relevant, is considerably smaller in scale(TODO ADD NUMBERS) , which could limit the generalization and statistical power of the findings. Furthermore, the DAIC-WOZ dataset provides a more comprehensive array of audio and textual data, enhancing the potential to train more robust machine learning models. This choice allows for a deeper exploration of methodologies and outcomes pertinent to the use of vocal biomarkers in depression detection within a larger and more varied participant base.
+During the literature review, I primarily focused on the DAIC dataset for several reasons. Firstly, while the EATD dataset is relevant, it is considerably smaller in scale, containing only three single sentences (negative, positive, neutral) from 162 participants. In contrast, the DAIC dataset provides a more comprehensive array of audio and textual data from 189 participants, enhancing the potential to train more robust machine learning models. This choice allows for a deeper exploration of methodologies and outcomes pertinent to the use of vocal biomarkers in depression detection within a larger and more varied participant base, thereby improving the generalization and statistical power of the findings.
 
-For finding the best accuracy, this paper\cite{liu2024diagnostic} was used, and three three papers were checked which reached the best accuracy. Among these, \cite{homsiang2022classification} achieved 95\% accuracy using a 1D CNN architecture with data augmentation. Their approach involved converting audio to Mel-frequency spectrum (MFC) and implementing various augmentation techniques including noise reduction, pitch shifting, and speed adjustment. Their comparative study of different architectures (1D CNN, 2D CNN, LSTM, and GRU) demonstrated that 1D CNN with augmented data significantly outperformed other approaches, showing strong performance in both depression detection (precision: 0.91, recall: 1.00) and non-depression classification (precision: 1.00, recall: 0.90). This work particularly highlights the importance of data augmentation in improving model performance, as their non-augmented experiments only achieved 71\% accuracy with 2D CNN.
+For finding the best accuracy, this paper\cite{liu2024diagnostic} was used, and three three papers were checked which reached the best accuracy. Among these Homsiang et al\cite{homsiang2022classification} achieved 95\% accuracy using a 1D CNN architecture with data augmentation. Their approach involved converting audio to Mel Cepstral Coefficients (MCC) and implementing various augmentation techniques including noise reduction, pitch shifting, and speed adjustment. Their comparative study of different architectures (1D CNN, 2D CNN, LSTM, and GRU) demonstrated that 1D CNN with augmented data significantly outperformed other approaches, showing strong performance in both depression detection (precision: 0.91, recall: 1.00) and non-depression classification (precision: 1.00, recall: 0.90). This work particularly highlights the importance of data augmentation in improving model performance, as their non-augmented experiments only achieved 71\% accuracy with 2D CNN.
 
-Ishmaru et al. \cite{ishimaru2023classification} achieved 97\% accuracy using a novel Graph Convolutional Neural Network (GCNN) approach that analyzes correlations between audio features. Their model represented the relationships between 65 different audio features as graph structures, allowing it to capture complex interactions between voice characteristics. They conducted two types of experiments: one with overlapping subjects in training and test sets (Setting 1) and another with completely separated subjects (Setting 2). While Setting 1 achieved state-of-the-art results, Setting 2's performance dropped significantly, highlighting a critical challenge in generalizing to new patients. This finding raises important questions about the practical applicability of current depression detection models when applied to previously unseen patients.
-This research suggests that while high accuracies are achievable in controlled settings, real-world application requires addressing the gap between training and new patient performance. Moreover, their work emphasizes the importance of considering feature interactions rather than analyzing audio characteristics in isolation.
+Ishmaru et al. \cite{ishimaru2023classification} achieved 97\% accuracy using a Graph Convolutional Neural Network (GCNN) approach that analyzes correlations between audio features. Their model represented the relationships between 65 different audio features (including 24 MCC) as graph structures, allowing it to capture complex interactions between voice characteristics. They conducted two types of experiments: one with overlapping subjects in training and test sets (Setting 1, Speaker-dependent test) and another with completely separated subjects (Setting 2, Speaker-independent test). While Setting 1 achieved 95\% accuracy, Setting 2's performance dropped significantly, highlighting a critical challenge in generalizing to new patients. This finding raises important questions about the practical applicability of current depression detection models when applied to previously unseen patients. This research suggests that while high accuracies are achievable in controlled settings, real-world application requires addressing the gap between training and new patient performance.
 
-Yin et al. \cite{yin2023depression} proposed a novel approach combining transformers with parallel Convolutional Neural Networks (TCC) for depression detection from speech. Their model achieved 94\% accuracy by utilizing a parallel structure: two CNN streams for local feature extraction and a transformer with linear attention mechanisms for capturing temporal patterns. The key innovation was their use of linear attention mechanisms with kernel functions instead of traditional scaled dot-product attention, which reduced computational complexity while maintaining performance. Their experimental results on the DAIC-WOZ dataset showed that this hybrid approach outperformed existing CNN-LSTM architectures, demonstrating that parallel processing of both local and temporal features can enhance depression detection accuracy. Moreover, their work highlights the importance of efficient attention mechanisms in processing long speech sequences.
-\subsubsection{TODO}
-- Check again preprocessing on the audio (since I won't do any)
--- Q: how does it effect the accuracy? 
+Yin et al. \cite{yin2023depression} introduced a novel approach to depression detection from speech by combining transformers with parallel Convolutional Neural Networks (TCC), achieving an accuracy of 94\% using 40 band Mel-Frequency Cepstral Coefficients (MFCC). This method of feature extraction was critical in maintaining the fidelity of audio signals, thereby enhancing model accuracy. Importantly, the high accuracy was obtained under experimental conditions similar to "Setting 1" from prior research, where the model was trained and tested on audio samples from the same set of participants. This setup often leads to inflated performance metrics due to the model's limited generalization to new subjects. Their model, which incorporates two CNN streams for local feature extraction alongside a transformer using linear attention mechanisms with kernel functions, reduces computational demands while enhancing the ability to capture temporal dynamics in speech. The results, derived from the DAIC dataset, indicated that their hybrid model outperforms traditional CNN-LSTM architectures. This showcases the effectiveness of parallel processing and advanced attention mechanisms in recognizing depression from long speech sequences, highlighting the importance of robust feature extraction techniques like the 40 band MFCC in achieving high model performance.
 
--- Homsiang did preprocessing but no info about it
+In the literature on audio processing for depression detection, various audio preprocessing techniques have been utilized to enhance the quality of the data before analysis. Notably, Homsiang's approach involved some form of audio preprocessing, though specific details are not provided. Other studies have explicitly detailed their methods: for example, Ishmaru et al. described techniques for speech enhancement that include noise estimation and filtration using deep learning models, aiming to improve the clarity and quality of the audio data for better model performance\cite{kantamaneni2023speech}
 
-[8] E. Ma, “Data Augmentation for Audio,” unpublished.
-[9] Q. HA, “Augmentation methods for audio,” unpublished.
+Conversely, Yin et al. opted not to apply any preprocessing to their audio data. This approach can offer insights into the raw data's effectiveness but may require more sophisticated modeling techniques to deal with potential noise and variability in the audio signals.
 
--- Ishmaru
-30. Kantamaneni, S.; Charles, A.; Babu, T.R. Speech enhancement with noise estimation and filtration using deep learning models.
-Theor. Comput. Sci. 2022, 941, 14–28. [CrossRef]
-
-(omg, what a training vis)
-
--- Yin
-No preprocessing at all. But using MFCC, and a second dataset: MODMA
-
-
-
-\begin{comment}
----------------
-Homsiang et al. (2022): 0.95 accuracy - Classification of Depression Audio Data by Deep Learning
-cite - homsiang2022classification
-
-Ishmaru et al. (2023): 0.97 accuracy
-Classification of Depression and Its Severity Based on Multiple
-Audio Features Using a Graphical Convolutional Neural Network
-cite - ishimaru2023classification
-
-Yin et al. (2023): 0.94 accuracy
-Depression Detection in Speech Using Transformer and Parallel
-Convolutional Neural Networks
-cite - yin2023depression
-
-\end{comment}
+This variety in approaches highlights a crucial aspect of audio-based depression detection research: the balance between enhancing data quality through preprocessing and developing models robust enough to handle raw, unfiltered data.

@@ -1,9 +1,9 @@
 \section{Experimental Setup}
-\subsection{Feature Selection}
+\subsection{Feature Selection - DT}
 
-DT
+For finding the best features which corrolate with the binary depression score ANOVA, Random Forest (RF) and Mutual information was used. Despite the unbalanced dataset [TODO: Cite something about it] Using the top features selected by ANOVA produced the best result. 
 
-For finding the best features which corrolate with the binary depression score ANOVA, Random Forest (RF) and Mutual information was used. Despite the unbalanced dataset ANOVA produced the best result. 
-\subsection{Model Parameters}
-\subsection{Evaluation Metrics}
-\subsection{Implementation Details}
+\subsection{Model Parameters TCC}
+
+The implementation of the TCC model is based on the original paper \cite{tcc}. some model parameters are lowered simply due to the HW limitations (to be able to fit into VRAM wiht limit of 4GB). The model is trained with a batch size of 32, a learning rate of 0.0001, and a maximum of 40 epochs. 
+

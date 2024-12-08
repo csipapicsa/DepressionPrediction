@@ -1,18 +1,9 @@
 \section{Discussion}
 
-Blablabla
+This study's models are designed to predict PHQ-8 binary scores, which serve as a binary indicator of depression severity. Although the PHQ-8 is a reliable measure of depressive symptoms\cite{phq8}, this reliance raises questions about the necessity and utility of developing machine learning models based on audio data.
 
-Data cleaning maybe helps for the accuracy, however I wanted to test these methods in real world scenarios when the audio is possibly noisy. 
+The technical feasibility of filling out the PHQ-8 survey, which is available online and considered trustworthy, further challenges the practicality of audio-based models. These models might seem redundant when a simpler and well-established method exists. However, audio-based applications could become relevant in scenarios where individuals are reluctant to complete the PHQ-8 survey. This might include cases where individuals, particularly those with severe or major depression, do not seek medical help.
 
-As Baily\cite{bailey2021gender} states that the DAIC woz men women bias leads to performance difference in case of ML models. 
+Nevertheless, the utility of such models is constrained by the limited availability of public datasets, which impacts the robustness and generalizability of the findings. Additionally, factors such as varying audio quality and background noise—dependent on the microphone or the environment—can significantly affect the performance of models trained on audio data.
 
-\subsection{Key Findings}
-- simple decision tree reaches x accuracy in case of binary classification
-
-- Cross validation of the two dataset results this and that -> performs well, not well, whatever
-\subsection{Limitations}
-- Hopefully there is not
-
-- Using audio only
-
-- Which features are extracted
+Furthermore, as highlighted by Bailey\cite{bailey2021gender}, biases such as gender discrepancies within the DAIC-WOZ dataset can lead to performance variations across machine learning models. These biases need to be addressed to enhance the fairness and accuracy of predictive modeling in clinical applications.

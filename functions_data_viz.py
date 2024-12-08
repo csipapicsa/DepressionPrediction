@@ -239,3 +239,59 @@ def plot_confusion_matrices_rate(clf, X_train, y_train, X_dev, y_dev, show_plot=
         print(classification_report(y_train, y_train_pred))
         print("\nDev Set Metrics:")
         print(classification_report(y_dev, y_dev_pred))
+
+
+def plot_precomputed_conf_matrices(train_conf_matrix, val_conf_matrix, show_plot="all", save=True):
+    """
+    Plot precomputed confusion matrices for training and/or validation sets with detailed metrics.
+    """
+    # Normalize the confusion matrices for better comparison
+    cm_train_normalized = train_conf_matrix.astype('float') / train_conf_matrix.sum(axis=1)[:, np.newaxis]
+    cm_val_normalized = val_conf_matrix.astype('float') / val_conf_matrix.sum(axis=1)[:, np.newaxis]
+
+    # Create annotations with percentage and count
+    annot_train = np.array([["{:.0%}\n({})".format(data, count) 
+                             for data, count in zip(row, count_row)] 
+                            for row, count_row in zip(cm_train_normalized, train_conf_matrix)])
+    annot_val = np.array([["{:.0%}\n({})".format(data, count) 
+                           for data, count in zip(row, count_row)] 
+                          for row, count_row in zip(cm_val_normalized, val_conf_matrix)])
+    
+    # Create figure with appropriate subplots
+    if show_plot == "all":
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(5, 2))
+        # Plot normalized training confusion matrix
+        sns.heatmap(cm_train_normalized, annot=annot_train, fmt='', cmap='Blues', ax=ax1)
+        ax1.set_title('Training Set Confusion Matrix', fontsize=8)
+        ax1.set_xlabel('Predicted Label', fontsize=8)
+        ax1.set_ylabel('True Label', fontsize=8)
+        
+        # Plot normalized validation confusion matrix
+        sns.heatmap(cm_val_normalized, annot=annot_val, fmt='', cmap='Blues', ax=ax2)
+        ax2.set_title('Validation Set Confusion Matrix', fontsize=8)
+        ax2.set_xlabel('Predicted Label', fontsize=8)
+        ax2.set_ylabel('True Label', fontsize=8)
+    elif show_plot == "train":
+        fig, ax1 = plt.subplots(1, 1, figsize=(5, 4))
+        # Plot normalized training confusion matrix
+        sns.heatmap(cm_train_normalized, annot=annot_train, fmt='', cmap='Blues', ax=ax1)
+        ax1.set_title('Training Set Confusion Matrix', fontsize=8)
+        ax1.set_xlabel('Predicted Label', fontsize=8)
+        ax1.set_ylabel('True Label', fontsize=8)
+    elif show_plot == "val":
+        fig, ax2 = plt.subplots(1, 1, figsize=(5, 4))
+        # Plot normalized validation confusion matrix
+        sns.heatmap(cm_val_normalized, annot=annot_val, fmt='', cmap='Blues', ax=ax2)
+        ax2.set_title('Validation Set Confusion Matrix', fontsize=10)
+        ax2.set_xlabel('Predicted Label', fontsize=8)
+        ax2.set_ylabel('True Label', fontsize=8)
+
+    plt.tight_layout()
+    # Save the plot as PDF
+    if save:
+        today = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+        plt.savefig(f"{today}_{show_plot}_confusion_matrices.pdf", format='pdf')
+    plt.show()
+
+
+TEST = 100

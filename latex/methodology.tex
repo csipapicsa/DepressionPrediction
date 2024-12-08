@@ -2,7 +2,24 @@
 
 \subsection{Data Preparation}
 
-PHQ8 values are organized to  multiclass\cite{kroenke2001phq}. The values are organized into binary values as well based on\cite{kroenke2009phq}. In case of EATD the SDS index the SDS index is categorized by and it is mapped to binary categories [CITE]. 
+PHQ8 values are organized to  multiclass\cite{kroenke2001phq}. The values are organized into binary values as well based on\cite{kroenke2009phq}. In case of EATD the SDS index the SDS index is categorized by and it is mapped to binary categories.
+
+The table below shows the mapping of the PHQ8 values to binary values.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    PHQ8 Value & Binary Value \\ \hline
+    0-4        & 0            \\ \hline
+    5-27       & 1            \\ \hline
+    10-14      & 2            \\ \hline
+    15-19      & 3            \\ \hline
+    20-27      & 4            \\ \hline
+    \end{tabular}
+    \caption{Mapping
+    PHQ8 values to binary values}
+    \label{tab:phq8 to binary mapping}
 
 For extrating features for the DT I have used Mel-Frequency Cepstral Coefficients (MFCCs)\cite{tiwari2010mfcc} features. 
 
@@ -16,9 +33,9 @@ For the audio preparation: No additional audio  was performed on the audio files
 % MODELS
 
 \subsection{Models}
-Two model will be built for the evaluation. One is a decission tree (DT) another one is a cnnn [CITE WHICH ONE]. 
+Two model will be built for the evaluation. One is a decission tree (DT) another one is a Transformer-CNN-CNN (TCC)\cite{yin2023depression}.
 
-% DT 
+\subsection{DT}
 
 The determination of the optimal number of features and tree depth for the Decision Tree classifier is central to enhancing model performance and mitigating overfitting. The selection of the most predictive features is facilitated by an ANOVA-based feature ranking, which identifies features that significantly contribute to model accuracy. This feature selection process is integrated with depth tuning of the Decision Tree to find the optimal combination that yields the highest accuracy on the validation set.
 
@@ -26,6 +43,11 @@ To address potential overfitting, we systematically explore tree depths ranging 
 
 The final model parameters—optimal feature count and tree depth—are selected based on their performance on the development set, aiming to maximize the weighted average F1-score while maintaining generalizability across the dataset.
 
+\subsection{TCC}
 
-The CNN  CNN (from the best paper)
+I have adapted the TCC model for our application. The model consists of two parallel CNN streams and a transformer stream, integrating both local and global information processing capabilities. In my adaptation, I employ the CNN streams to extract local features from the input while the transformer stream captures the temporal dynamics through linear attention mechanisms, optimized for the dataset.
+
+Each CNN stream processes the input independently to capture diverse aspects of the data, and the transformer stream analyzes the sequence as a whole. The outputs of these streams are then fused, combining their feature spaces to enhance the model's prediction accuracy. This fusion happens in a fully connected layer that integrates learned features before the final classification layer.
+
+Modifications include adjusting the dimensionality of the input features and streamlining the transformer's attention mechanism to reduce computational complexity.
 
