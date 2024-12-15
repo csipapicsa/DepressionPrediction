@@ -2,7 +2,11 @@
 \documentclass{article}
 \usepackage[english]{babel}
 \usepackage[a4paper,left=15mm,top=15mm,right=15mm,bottom=15mm]{geometry}
-\usepackage{hyperref}
+
+%multi column line 
+
+\usepackage{makecell}  % Add this to your preamble
+
 %\usepackage{natbib}
 \usepackage{graphicx}
 \bibliographystyle{plainnat}
@@ -29,13 +33,16 @@
     \begin{center}
     \line(1,0){250}
     \end{center}
-    \huge{Decision Tree Models for Audio Feature Classification in Depression Prediction}
+    \huge{Decision Tree and Convolutional Neural Network Models for Audio Feature Classification in Depression Prediction}
     \begin{center}
     \line(1,0){250}
     \end{center}
     }
-\author{Gergo Gyori  (gegy@itu.dk)}
-\date{2024-12-15}
+\author{
+  Gergo Gyori  (gegy@itu.dk) \\
+  Supervised by: Stella Graßhof (stgr@itu.dk) 
+}
+\date{2024-12-16}
 
 \begin{document}
 
@@ -59,6 +66,9 @@
 \input{discussion}
 %\input{futurework}
 \input{conclusion}
+
+\section*{Acknowledgments}  % The asterisk (*) prevents numbering
+The author acknowledges the use of ChatGPT and Claude.ai for grammar enhancement in this paper. All technical content, analysis, and conclusions remain the author's original work.
 
 \appendix
 %\section{Detailed Feature Descriptions}

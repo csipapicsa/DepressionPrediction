@@ -1,9 +1,17 @@
 \section{Experimental Setup}
 \subsection{Feature Selection - DT}
 
-For finding the best features which corrolate with the binary depression score ANOVA, Random Forest (RF) and Mutual information was used. Despite the unbalanced dataset [TODO: Cite something about it] Using the top features selected by ANOVA produced the best result. 
+Feature selection was critical in determining the best predictors for the binary depression score. Three different methods were evaluated:
+
+\begin{itemize}
+    \item \textbf{ANOVA:} Used to identify features that showed significant differences between the two classes of depression scores. It employs the F-value to measure the ratio of variance between groups to variance within groups, with a higher F-value indicating greater discriminatory power of the feature \cite{Minitab_ANOVA}.
+    \item \textbf{Random Forest (RF):} Provided insight into feature importance based on ensemble learning.
+    \item \textbf{Mutual Information:} Assessed each feature's mutual dependency with the target variable.
+\end{itemize}
+
+Despite the dataset's imbalance, the features selected through the ANOVA method demonstrated the most substantial impact on model performance. This method effectively distinguished features that are highly predictive of the binary outcome, thereby facilitating a more focused and effective model training process. The top features identified through ANOVA were then used to train the Decision Tree, leading to the best result in terms of accuracy and generalization on unseen data.
 
 \subsection{Model Parameters TCC}
 
-The implementation of the TCC model is based on the original paper \cite{tcc}. some model parameters are lowered simply due to the HW limitations (to be able to fit into VRAM wiht limit of 4GB). The model is trained with a batch size of 32, a learning rate of 0.0001, and a maximum of 40 epochs. 
+The implementation of the TCC model is based on the original paper \cite{yin2023depression}. some model parameters are lowered simply due to the HW limitations (to be able to fit into VRAM wiht limit of 4GB). The model is trained with a batch size of 32, a learning rate of 0.0005, and a maximum of 100 epochs.
 

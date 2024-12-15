@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'main copy.blg'
+[119] biber-MSWIN64:340> INFO - === 
+[156] Biber.pm:419> INFO - Reading 'main copy.bcf'
+[274] Biber.pm:979> INFO - Found 15 citekeys in bib section 0
+[289] Biber.pm:4419> INFO - Processing section 0
+[321] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
+[379] bibtex.pm:1713> INFO - LaTeX decoding ...
+[410] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[566] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[574] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[574] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[574] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[630] bbl.pm:660> INFO - Writing 'main copy.bbl' with encoding 'UTF-8'
+[640] bbl.pm:763> INFO - Output to main copy.bbl
+[641] Biber.pm:131> WARN - I didn't find a database entry for 'tcc' (section 0)
+[641] Biber.pm:133> INFO - WARNINGS: 1

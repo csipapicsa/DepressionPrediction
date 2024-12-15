@@ -1,0 +1,97 @@
+\section{Methodology}
+
+\subsection{Data Preparation}
+
+PHQ8 values are organized to multiclass \cite{kroenke2001phq} based on the depression severity, and these severitities into binary values (non depression, depression) \cite{kroenke2009phq}. Table \ref{tab:phq8_severity} shows how these values are organized. In case of EATD the the SDS index is categorized by and it is mapped to binary categories as it shown in Table \ref{tab:sds_index_classification}.
+
+
+
+\begin{table}[H]
+    \centering
+    \caption{Severity levels according to the PHQ-8 score.}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{PHQ-8 Scores} & \textbf{Severity} & \textbf{Binary} \\
+    \hline
+    0--4 & Non depression & 0 \\
+    5--9 & Mild & 0 \\
+    10--14 & Moderate & 1 \\
+    15--20 & Moderately severe & 1 \\
+    21-- & Severe & 1 \\
+    \hline
+    \end{tabular}
+    
+    \label{tab:phq8_severity}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Depression severity levels based on SDS index scores with corresponding binary classification.}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{SDS Index} & \textbf{Severity} & \textbf{Binary} \\
+    \hline
+    0--49 & Normal & 0 \\
+    50--59 & Mild & 1 \\
+    60--69 & Moderate & 1 \\
+    70--100 & Severe & 1 \\
+    \hline
+    \end{tabular}
+    
+    \label{tab:sds_index_classification}
+\end{table}
+
+
+\subsection{Audio Feature Extraction - MFCC and MCC}
+
+For feature extraction in decision trees, I used a variety of audio features including MFCC as outlined by Tiwari \cite{tiwari2010mfcc}. For CNNs experiments, I have used MCC as well. Additionally, the decision tree model incorporated fundamental frequency (F0) \cite{wiki:f0}, harmonic-to-noise ratio (HNR) \cite{hnr}, and spectral slope \cite{wiki:spec_slope} to capture the dynamics and tonal quality of speech.
+
+MFCCs are pivotal for analyzing the power spectrum of audio signals, particularly in tasks like speech recognition. Think of MFCCs as a way to represent sound similar to how human ears process it. The extraction process has several steps: First, the audio signal is transformed from a time-based wave (as it shown on the second image \ref{fig:mfcc_mcc}) into its frequency components using the Fast Fourier Transform. These frequencies are then mapped onto the mel scale - a special scale that gives more attention to lower frequencies (like human speech) and less to higher frequencies (like high-pitched whistles), just as our ears do naturally. This mapping happens through a mel filter bank, which works like a series of overlapping filters that focus on different frequency ranges, similar to how different parts of our inner ear respond to different pitches. The outputs are then adjusted (logged) to match how we perceive loudness, since humans don't perceive sound intensity linearly - a whisper to normal speech feels like a smaller jump than normal speech to a shout. Finally, these features are mathematically processed (using a Discrete Cosine Transform \cite{wikidct}) to create the final MFCCs that effectively capture the key characteristics of the sound (the result is visualised on the first image \ref{fig:mfcc_mcc}).
+
+In the decision tree model \footnote{The detailed implementation can be found under the 5.2.1 Decision Tree subsection}, additional spectral features such as centroid, bandwidth, rolloff, and zero-crossing rate are computed along with the overall signal energy. These features are combined with statistical measures—mean and standard deviation—across frames to create a comprehensive feature vector for each audio sample. This approach not only captures the fundamental characteristics of sound but also the complex dynamics and tonal qualities associated with speech, making it effective for emotion recognition from speech. To manage data complexity, features like minimum, average, and maximum values are calculated for entire audio segments where the participant speaks, condensing long sequences of numbers into single values for each statistic.
+
+Figure \ref{fig:mfcc_mcc} shows the MFCC and MCC representation of the word "Depression" \footnote{Audio record, recorded by me}. The MFCC representation captures the spectral features of the audio signal, while the MCC representation emphasizes the cepstral features, providing a more detailed view of the audio signal's temporal dynamics. The choice of feature representation is crucial for model performance, as it determines the information available to the model for classification.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{vis_pdf/mfcc_mcc_comparison.pdf} % Adjust the scale to fit the page
+    \caption{Visual comparison of MFCC and MCC representations for the word "Depression", highlighting their distinct audio feature emphases. Length of the audio signal is 1 seconds, sampling rate is 24Khz, it generates a 100 long MFCC and MCC.}
+    \label{fig:mfcc_mcc}
+\end{figure}
+
+For audio preparation, no additional cleaning processes were applied to the audio files prior to extracting MFCC and MCC. In the DAIC dataset, audio segments where the patient speaks were isolated. Each segment underwent feature extraction, and the minimum, average, and maximum values across all segments for each patient were computed. These statistics were then used as inputs for the DT models. For CNN, the raw MFCC and MCC spectra were utilized directly in 200 frame chuncks.
+
+For the EATD dataset, audio samples included three emotional states: neutral, positive, and negative. For each state, features were extracted and the minimum, average, and maximum values were calculated and used similarly to the DAIC dataset processing.
+
+% This approach ensures that while no preprocessing is applied to clean the audio, the data retains its natural characteristics, potentially influencing the robustness and generalizability of the depression detection models.
+
+
+% MODELS
+
+\subsection{Models}
+Two model will be built for the evaluation. One is a decission tree (DT) another one is a Transformer-CNN-CNN (TCC)\cite{yin2023depression}.
+
+\subsubsection{Decision Tree}
+
+The methodology employed for optimizing the DT classifier involves an integrated approach to feature selection and tree depth configuration. The objective is to enhance model performance while preventing overfitting. Feature selection was performed using three techniques to evaluate their effectiveness in identifying the most predictive features:
+
+\begin{enumerate}
+    \item \textbf{ANOVA F-value:} Analyzes the variance among classes to identify features that significantly differentiate between them. This method calculates the F-value for each feature to determine its impact on classification accuracy, prioritizing those with higher values for model inclusion.
+    \item \textbf{Mutual Information (MI):} Measures the dependency between the features and the target variable, crucial for capturing nonlinear relationships.
+    \item \textbf{Random Forest Feature Importance (RF):} Utilizes the Random Forest algorithm to estimate the usefulness of each feature based on the impurity reduction it brings to the model.
+\end{enumerate}
+
+These methods were chosen to provide a comprehensive analysis of feature relevance from both statistical and machine learning perspectives. The Decision Tree's depth was then tuned to find the optimal balance that yielded the highest accuracy on the validation set, using the most predictive features identified by the feature selection process.
+
+To mitigate the risk of overfitting, I methodically investigated a range of tree depths from 1 to 19, while also varying the number of top-ranked features from 1 to 29. This approach allowed me to assess the model’s performance at each depth, using different subsets of top features to determine the optimal combination that enhances model accuracy without overfitting. The evaluation metrics include F1-score \cite{gfg_f1score} and accuracy, with a particular emphasis on the weighted average F1-score due to the imbalanced nature of our dataset. This metric adjusts for label imbalance by weighting the F1-score of each class by its support (the number of true instances for each label). This approach ensures that my model's performance is robust across different class distributions and provides a more reliable indication of its generalization ability.
+
+The final model parameters—optimal feature count and tree depth—are selected based on their performance on the development set, aiming to maximize the weighted average F1-score while maintaining generalizability across the dataset.
+
+\subsubsection{Convolutional Neural Network}
+
+I adapted three CNN models based on the studies highlighted in the literature review. Among these, the TCC model underwent a more detailed analysis. It integrates two parallel CNN streams with a transformer stream. This design effectively combines local and global information processing capabilities. Specifically, the parallel CNN streams are utilized to extract local features from the input, while the transformer stream, employing linear attention mechanisms, captures the temporal dynamics. This configuration is particularly optimized for handling the complexities of the dataset.
+
+Each CNN stream processes the input independently to capture diverse aspects of the data, and the transformer stream analyzes the sequence as a whole. The outputs of these streams are then fused, combining their feature spaces to enhance the model's prediction accuracy. This fusion happens in a fully connected layer that integrates learned features before the final classification layer.
+
+Modifications include adjusting the dimensionality of the input features and streamlining the transformer's attention mechanism to reduce computational complexity.
+

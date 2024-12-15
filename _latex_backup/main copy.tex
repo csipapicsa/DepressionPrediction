@@ -1,0 +1,77 @@
+%\documentclass[twocolumn]{article}
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,left=15mm,top=15mm,right=15mm,bottom=15mm]{geometry}
+
+%\usepackage{natbib}
+\usepackage{graphicx}
+\bibliographystyle{plainnat}
+%\usepackage{booktabs, tabularx}
+\usepackage{multicol}
+\usepackage{comment}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+% Reference
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{references.bib}
+\usepackage{hyperref}  % This makes links clickable.
+
+% Column related
+%\setlength{\parindent}{1pt} % Adjusts the indentation at the start of a new paragraph.
+%\setlength{\parskip}{5pt} % Adjusts vertical space between paragraphs.
+
+%\usepackage[title]{appendix}
+
+\title{\includegraphics{images/0.ITU-logo.png}\\[1cm] \huge{Research Project}\\
+    \begin{center}
+    \line(1,0){250}
+    \end{center}
+    \huge{Decision Tree Models for Audio Feature Classification in Depression Prediction}
+    \begin{center}
+    \line(1,0){250}
+    \end{center}
+    }
+\author{Gergo Gyori  (gegy@itu.dk)}
+\date{2024-12-15}
+
+\begin{document}
+
+\maketitle
+
+\input{abstract}
+% multicolum version 2
+\begin{multicols}{2}
+
+\bigskip % Adds vertical space
+\noindent\textbf{Keywords:} depression detection \textbullet{} audio analysis \textbullet{} machine learning \textbullet{} CNN \textbullet{} MFCC
+
+\input{introduction}
+\input{datasets}
+\input{lit}
+%\input{related_work}
+\input{methodology}
+\input{experimental_setup}
+\input{results}
+
+\input{discussion}
+%\input{futurework}
+\input{conclusion}
+
+\appendix
+%\section{Detailed Feature Descriptions}
+%\section{Model Parameters and Configurations}
+%\section{Additional Experimental Results}
+
+%\section*{Acknowledgments}
+% Thank your advisors, etc.
+
+
+\clearpage
+\printbibliography
+
+% multicolumn version 2
+\end{multicols}
+\end{document}

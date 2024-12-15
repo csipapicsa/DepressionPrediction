@@ -1,0 +1,596 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{bailey2021gender}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=59156d28ab659c1174f664d2fa96dfff}{%
+           family={Bailey},
+           familyi={B\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=af302f6b1171db4b3b2979f068a9bafe}{%
+           family={Plumbley},
+           familyi={P\bibinitperiod},
+           given={Mark\bibnamedelima D},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{10d264af0fdab21e6f539a7786120c44}
+      \strng{fullhash}{10d264af0fdab21e6f539a7786120c44}
+      \strng{bibnamehash}{10d264af0fdab21e6f539a7786120c44}
+      \strng{authorbibnamehash}{10d264af0fdab21e6f539a7786120c44}
+      \strng{authornamehash}{10d264af0fdab21e6f539a7786120c44}
+      \strng{authorfullhash}{10d264af0fdab21e6f539a7786120c44}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2021 29th European Signal Processing Conference (EUSIPCO)}
+      \field{title}{Gender bias in depression detection using audio features}
+      \field{year}{2021}
+      \field{pages}{596\bibrangedash 600}
+      \range{pages}{5}
+    \endentry
+    \entry{homsiang2022classification}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=d793a1aa662fe2f2929eb6d6b43e4c2f}{%
+           family={Homsiang},
+           familyi={H\bibinitperiod},
+           given={Phanomkorn},
+           giveni={P\bibinitperiod}}}%
+        {{hash=0d07b7ecb5a218c3324e05a36e836824}{%
+           family={Treebupachatsakul},
+           familyi={T\bibinitperiod},
+           given={Treesukon},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c3e416945db06c7d96785c120325dd73}{%
+           family={Kiatrungrit},
+           familyi={K\bibinitperiod},
+           given={Komsan},
+           giveni={K\bibinitperiod}}}%
+        {{hash=af1f9cb5d0712ed7b5cf88faa9e12774}{%
+           family={Poomrittigul},
+           familyi={P\bibinitperiod},
+           given={Suvit},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{2f06a57f587b15b77a9e202564798b9e}
+      \strng{fullhash}{dbe0c6a09cbe71ee8b43f65e80259fd5}
+      \strng{bibnamehash}{2f06a57f587b15b77a9e202564798b9e}
+      \strng{authorbibnamehash}{2f06a57f587b15b77a9e202564798b9e}
+      \strng{authornamehash}{2f06a57f587b15b77a9e202564798b9e}
+      \strng{authorfullhash}{dbe0c6a09cbe71ee8b43f65e80259fd5}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2022 14th Biomedical Engineering International Conference (BMEiCON)}
+      \field{title}{Classification of Depression Audio Data by Deep Learning}
+      \field{year}{2022}
+      \field{pages}{1\bibrangedash 4}
+      \range{pages}{4}
+    \endentry
+    \entry{ishimaru2023classification}{article}{}
+      \name{author}{5}{}{%
+        {{hash=bf3759522a124c91228034a51b499320}{%
+           family={Ishimaru},
+           familyi={I\bibinitperiod},
+           given={Momoko},
+           giveni={M\bibinitperiod}}}%
+        {{hash=26cb58ac24ab11ee31a3e7a7674d6e32}{%
+           family={Okada},
+           familyi={O\bibinitperiod},
+           given={Yoshifumi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6bc746a31becec82626db31248ff3bf5}{%
+           family={Uchiyama},
+           familyi={U\bibinitperiod},
+           given={Ryunosuke},
+           giveni={R\bibinitperiod}}}%
+        {{hash=23169eacc1c4dcb9c3d4483723d64dfe}{%
+           family={Horiguchi},
+           familyi={H\bibinitperiod},
+           given={Ryo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8173df54e7832fc11291e17aa7305949}{%
+           family={Toyoshima},
+           familyi={T\bibinitperiod},
+           given={Itsuki},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{70a99cd81de3bbb35846adf62a8d0fd4}
+      \strng{fullhash}{4057ef7b25dd741d00cfe3b9081bf145}
+      \strng{bibnamehash}{70a99cd81de3bbb35846adf62a8d0fd4}
+      \strng{authorbibnamehash}{70a99cd81de3bbb35846adf62a8d0fd4}
+      \strng{authornamehash}{70a99cd81de3bbb35846adf62a8d0fd4}
+      \strng{authorfullhash}{4057ef7b25dd741d00cfe3b9081bf145}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Environmental Research and Public Health}
+      \field{number}{2}
+      \field{title}{Classification of Depression and Its Severity Based on Multiple Audio Features Using a Graphical Convolutional Neural Network}
+      \field{volume}{20}
+      \field{year}{2023}
+      \field{pages}{1588}
+      \range{pages}{1}
+    \endentry
+    \entry{kantamaneni2023speech}{article}{}
+      \name{author}{3}{}{%
+        {{hash=df2692af0c203190d9ad6c5c7a11ac68}{%
+           family={Kantamaneni},
+           familyi={K\bibinitperiod},
+           given={Sravanthi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5b9d0d5a9ca469a83548e4f78ae2dd5c}{%
+           family={Charles},
+           familyi={C\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0d0eaf9655fb7843ef02dde648fbd70d}{%
+           family={Babu},
+           familyi={B\bibinitperiod},
+           given={T\bibnamedelima Ranga},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{417ac38a42ad02f15953ec21aaaf97e1}
+      \strng{fullhash}{417ac38a42ad02f15953ec21aaaf97e1}
+      \strng{bibnamehash}{417ac38a42ad02f15953ec21aaaf97e1}
+      \strng{authorbibnamehash}{417ac38a42ad02f15953ec21aaaf97e1}
+      \strng{authornamehash}{417ac38a42ad02f15953ec21aaaf97e1}
+      \strng{authorfullhash}{417ac38a42ad02f15953ec21aaaf97e1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{title}{Speech enhancement with noise estimation and filtration using deep learning models}
+      \field{volume}{941}
+      \field{year}{2023}
+      \field{pages}{14\bibrangedash 28}
+      \range{pages}{15}
+    \endentry
+    \entry{kroenke2001phq}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ca0cb64c546b95fdb490e87d6f4c74aa}{%
+           family={Kroenke},
+           familyi={K\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+        {{hash=bc1b8344e704f2bd9a0fb9fc99c7cacd}{%
+           family={Spitzer},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima L},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=22d8fd3b4724fff4ecd689d939bc9f57}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Janet\bibnamedelima BW},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{f679a199668f88b8bd0439c8457b957e}
+      \strng{fullhash}{f679a199668f88b8bd0439c8457b957e}
+      \strng{bibnamehash}{f679a199668f88b8bd0439c8457b957e}
+      \strng{authorbibnamehash}{f679a199668f88b8bd0439c8457b957e}
+      \strng{authornamehash}{f679a199668f88b8bd0439c8457b957e}
+      \strng{authorfullhash}{f679a199668f88b8bd0439c8457b957e}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of general internal medicine}
+      \field{number}{9}
+      \field{title}{The PHQ-9: validity of a brief depression severity measure}
+      \field{volume}{16}
+      \field{year}{2001}
+      \field{pages}{606\bibrangedash 613}
+      \range{pages}{8}
+    \endentry
+    \entry{kroenke2009phq}{article}{}
+      \name{author}{6}{}{%
+        {{hash=ca0cb64c546b95fdb490e87d6f4c74aa}{%
+           family={Kroenke},
+           familyi={K\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+        {{hash=8c389a24d2ec7fca8b60b1222272f275}{%
+           family={Strine},
+           familyi={S\bibinitperiod},
+           given={Tara\bibnamedelima W},
+           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=bc1b8344e704f2bd9a0fb9fc99c7cacd}{%
+           family={Spitzer},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima L},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=22d8fd3b4724fff4ecd689d939bc9f57}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Janet\bibnamedelima BW},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=18102fe7fdc65f83169d06f4fd2ae8d0}{%
+           family={Berry},
+           familyi={B\bibinitperiod},
+           given={Joyce\bibnamedelima T},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=7513d7919e53aa2cd5af52123cc9ee72}{%
+           family={Mokdad},
+           familyi={M\bibinitperiod},
+           given={Ali\bibnamedelima H},
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{fullhash}{2c0496a7688c0bb30bb3ecc229b0dff5}
+      \strng{bibnamehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{authorbibnamehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{authornamehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{authorfullhash}{2c0496a7688c0bb30bb3ecc229b0dff5}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of affective disorders}
+      \field{number}{1-3}
+      \field{title}{The PHQ-8 as a measure of current depression in the general population}
+      \field{volume}{114}
+      \field{year}{2009}
+      \field{pages}{163\bibrangedash 173}
+      \range{pages}{11}
+    \endentry
+    \entry{phq8}{article}{}
+      \name{author}{6}{}{%
+        {{hash=ca0cb64c546b95fdb490e87d6f4c74aa}{%
+           family={Kroenke},
+           familyi={K\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+        {{hash=8c389a24d2ec7fca8b60b1222272f275}{%
+           family={Strine},
+           familyi={S\bibinitperiod},
+           given={Tara\bibnamedelima W.},
+           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=bc1b8344e704f2bd9a0fb9fc99c7cacd}{%
+           family={Spitzer},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima L.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=22d8fd3b4724fff4ecd689d939bc9f57}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Janet\bibnamedelimb B\bibnamedelima W},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=18102fe7fdc65f83169d06f4fd2ae8d0}{%
+           family={Berry},
+           familyi={B\bibinitperiod},
+           given={Joyce\bibnamedelima T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=7513d7919e53aa2cd5af52123cc9ee72}{%
+           family={Mokdad},
+           familyi={M\bibinitperiod},
+           given={Ali\bibnamedelima H.},
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{fullhash}{2c0496a7688c0bb30bb3ecc229b0dff5}
+      \strng{bibnamehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{authorbibnamehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{authornamehash}{91c6bd58462f357337ee8dbbc40ee836}
+      \strng{authorfullhash}{2c0496a7688c0bb30bb3ecc229b0dff5}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of affective disorders}
+      \field{title}{The PHQ-8 as a measure of current depression in the general population.}
+      \field{volume}{114 1-3}
+      \field{year}{2009}
+      \field{pages}{163\bibrangedash 73}
+      \range{pages}{11}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:3568107
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:3568107
+      \endverb
+    \endentry
+    \entry{liu2024diagnostic}{article}{}
+      \name{author}{6}{}{%
+        {{hash=3ac26a7a722914a7ffcb4c14b2671702}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Lidan},
+           giveni={L\bibinitperiod}}}%
+        {{hash=9b70d85f003fa30a5cae684a692c6e97}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Lu},
+           giveni={L\bibinitperiod}}}%
+        {{hash=15ac197fae7b988c8564ef27b0aec2ba}{%
+           family={Wafa},
+           familyi={W\bibinitperiod},
+           given={Hatem\bibnamedelima A},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=19179008dde76b54a16a2da4f1664296}{%
+           family={Tydeman},
+           familyi={T\bibinitperiod},
+           given={Florence},
+           giveni={F\bibinitperiod}}}%
+        {{hash=8aec54c0329798165bffe6a3c6759a93}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Wanqing},
+           giveni={W\bibinitperiod}}}%
+        {{hash=37c02d4713c97713af33b875c8acd5d7}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yanzhong},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{f42a4e44a2ec538fc7b05fcfbe3c865d}
+      \strng{fullhash}{b87a4615557043cc712a0f673473cfce}
+      \strng{bibnamehash}{f42a4e44a2ec538fc7b05fcfbe3c865d}
+      \strng{authorbibnamehash}{f42a4e44a2ec538fc7b05fcfbe3c865d}
+      \strng{authornamehash}{f42a4e44a2ec538fc7b05fcfbe3c865d}
+      \strng{authorfullhash}{b87a4615557043cc712a0f673473cfce}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the American Medical Informatics Association}
+      \field{number}{10}
+      \field{title}{Diagnostic accuracy of deep learning using speech samples in depression: a systematic review and meta-analysis}
+      \field{volume}{31}
+      \field{year}{2024}
+      \field{pages}{2394\bibrangedash 2404}
+      \range{pages}{11}
+    \endentry
+    \entry{shen2022automaticdepressiondetectionemotional}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=5fe5800a2c6497dc9b1e0d237e90c577}{%
+           family={Shen},
+           familyi={S\bibinitperiod},
+           given={Ying},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=3b8a61c8e3bbb9d8b985e721a8ee30ba}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Huiyu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=fb72b03bb0004672eb40dd00cb76bdcd}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Lin},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{1dff6621e65eb2358ee9931e2b7aaa6d}
+      \strng{fullhash}{1dff6621e65eb2358ee9931e2b7aaa6d}
+      \strng{bibnamehash}{1dff6621e65eb2358ee9931e2b7aaa6d}
+      \strng{authorbibnamehash}{1dff6621e65eb2358ee9931e2b7aaa6d}
+      \strng{authornamehash}{1dff6621e65eb2358ee9931e2b7aaa6d}
+      \strng{authorfullhash}{1dff6621e65eb2358ee9931e2b7aaa6d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{eess.AS}
+      \field{eprinttype}{arXiv}
+      \field{title}{Automatic Depression Detection: An Emotional Audio-Textual Corpus and a GRU/BiLSTM-based Model}
+      \field{year}{2022}
+      \verb{eprint}
+      \verb 2202.08210
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2202.08210
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2202.08210
+      \endverb
+    \endentry
+    \entry{tiwari2010mfcc}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a52ef56459d29b199537b67c4eca2c78}{%
+           family={Tiwari},
+           familyi={T\bibinitperiod},
+           given={Vibha},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Citeseer}%
+      }
+      \strng{namehash}{a52ef56459d29b199537b67c4eca2c78}
+      \strng{fullhash}{a52ef56459d29b199537b67c4eca2c78}
+      \strng{bibnamehash}{a52ef56459d29b199537b67c4eca2c78}
+      \strng{authorbibnamehash}{a52ef56459d29b199537b67c4eca2c78}
+      \strng{authornamehash}{a52ef56459d29b199537b67c4eca2c78}
+      \strng{authorfullhash}{a52ef56459d29b199537b67c4eca2c78}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International journal on emerging technologies}
+      \field{number}{1}
+      \field{title}{MFCC and its applications in speaker recognition}
+      \field{volume}{1}
+      \field{year}{2010}
+      \field{pages}{19\bibrangedash 22}
+      \range{pages}{4}
+    \endentry
+    \entry{DAICWOZ}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ed7cac8db1aeb843fdabf4af2e6c3581}{%
+           family={{University of Southern California}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{ed7cac8db1aeb843fdabf4af2e6c3581}
+      \strng{fullhash}{ed7cac8db1aeb843fdabf4af2e6c3581}
+      \strng{bibnamehash}{ed7cac8db1aeb843fdabf4af2e6c3581}
+      \strng{authorbibnamehash}{ed7cac8db1aeb843fdabf4af2e6c3581}
+      \strng{authornamehash}{ed7cac8db1aeb843fdabf4af2e6c3581}
+      \strng{authorfullhash}{ed7cac8db1aeb843fdabf4af2e6c3581}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://dcapswoz.ict.usc.edu/}}
+      \field{note}{Accessed: 2024-11-03}
+      \field{title}{The Distress Analysis Interview Corpus - Wizard of Oz (DAIC-WOZ)}
+      \field{year}{2024}
+    \endentry
+    \entry{WHO_Mental_Disorders_2019}{article}{}
+      \name{author}{1}{}{%
+        {{hash=531217507bec092b6ec36c0f78f46736}{%
+           family={{World Health Organization}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{fullhash}{531217507bec092b6ec36c0f78f46736}
+      \strng{bibnamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authorbibnamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authornamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authorfullhash}{531217507bec092b6ec36c0f78f46736}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Health Organization: News Room}
+      \field{note}{Accessed: 2023-10-02}
+      \field{title}{Mental Disorders}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://www.who.int/news-room/fact-sheets/detail/mental-disorders#:~:text=In%202019%2C%201%20in%20every,of%20the%20COVID%2D19%20pandemic
+      \endverb
+      \verb{url}
+      \verb https://www.who.int/news-room/fact-sheets/detail/mental-disorders#:~:text=In%202019%2C%201%20in%20every,of%20the%20COVID%2D19%20pandemic
+      \endverb
+    \endentry
+    \entry{yin2023depression}{article}{}
+      \name{author}{4}{}{%
+        {{hash=78115ac743b502341f282e2eac795764}{%
+           family={Yin},
+           familyi={Y\bibinitperiod},
+           given={Faming},
+           giveni={F\bibinitperiod}}}%
+        {{hash=f053447e9f531267815b0e0b53bc98f8}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod}}}%
+        {{hash=598d4dfa8a554cb7755fec946cbbfd92}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Xinzhou},
+           giveni={X\bibinitperiod}}}%
+        {{hash=1a85fb4271591180033cc6d2d2310539}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{55ed6c9c381b7a6edc10863c4a1fc14f}
+      \strng{fullhash}{b5832cddb04165e44a20f96bbbde28d8}
+      \strng{bibnamehash}{55ed6c9c381b7a6edc10863c4a1fc14f}
+      \strng{authorbibnamehash}{55ed6c9c381b7a6edc10863c4a1fc14f}
+      \strng{authornamehash}{55ed6c9c381b7a6edc10863c4a1fc14f}
+      \strng{authorfullhash}{b5832cddb04165e44a20f96bbbde28d8}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronics}
+      \field{number}{2}
+      \field{title}{Depression detection in speech using transformer and parallel convolutional neural networks}
+      \field{volume}{12}
+      \field{year}{2023}
+      \field{pages}{328}
+      \range{pages}{1}
+    \endentry
+    \entry{SDS}{article}{}
+      \name{author}{1}{}{%
+        {{hash=4695167ebfa2290fa8ade063a5327c47}{%
+           family={ZUNG},
+           familyi={Z\bibinitperiod},
+           given={WILLIAM\bibnamedelimb W.\bibnamedelimi K.},
+           giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{4695167ebfa2290fa8ade063a5327c47}
+      \strng{fullhash}{4695167ebfa2290fa8ade063a5327c47}
+      \strng{bibnamehash}{4695167ebfa2290fa8ade063a5327c47}
+      \strng{authorbibnamehash}{4695167ebfa2290fa8ade063a5327c47}
+      \strng{authornamehash}{4695167ebfa2290fa8ade063a5327c47}
+      \strng{authorfullhash}{4695167ebfa2290fa8ade063a5327c47}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{The fact that there is a need for assessing depression, whether as an affect, a symptom, or a disorder is obvious by the numerous scales and inventories available and in use today.The need to assess depression simply and specifically as a psychiatric disorder has not been met by most scales available today. We became acutely aware of this situation in a research project where we needed to correlate both the presence and severity of a depressive disorder in patients with other parameters such as arousal response during sleep and changes with treatment of the depressive disorder. It was felt that the general depression scales used were insufficient for our purpose and that the more specific scales were also inadequate. These inadequacies related to factors such as the length of a scale or inventory being too long and too time consuming, especially for a patient}}
+      \field{issn}{0003-990X}
+      \field{journaltitle}{Archives of General Psychiatry}
+      \field{month}{01}
+      \field{number}{1}
+      \field{title}{{A Self-Rating Depression Scale}}
+      \field{volume}{12}
+      \field{year}{1965}
+      \field{pages}{63\bibrangedash 70}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1001/archpsyc.1965.01720310065008
+      \endverb
+      \verb{eprint}
+      \verb https://jamanetwork.com/journals/jamapsychiatry/articlepdf/488696/archpsyc\_12\_1\_008.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1001/archpsyc.1965.01720310065008
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1001/archpsyc.1965.01720310065008
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{tcc}
+\endrefsection
+\endinput
+

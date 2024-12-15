@@ -51,6 +51,77 @@
       \field{pages}{596\bibrangedash 600}
       \range{pages}{5}
     \endentry
+    \entry{Minitab_ANOVA}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=c6736cbbc9fb0f6ed4dc3eb24ac41da4}{%
+           family={Blog},
+           familyi={B\bibinitperiod},
+           given={Minitab},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{c6736cbbc9fb0f6ed4dc3eb24ac41da4}
+      \strng{fullhash}{c6736cbbc9fb0f6ed4dc3eb24ac41da4}
+      \strng{bibnamehash}{c6736cbbc9fb0f6ed4dc3eb24ac41da4}
+      \strng{authorbibnamehash}{c6736cbbc9fb0f6ed4dc3eb24ac41da4}
+      \strng{authornamehash}{c6736cbbc9fb0f6ed4dc3eb24ac41da4}
+      \strng{authorfullhash}{c6736cbbc9fb0f6ed4dc3eb24ac41da4}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2024-12-14}
+      \field{title}{Understanding Analysis of Variance (ANOVA) and the F-Test}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://blog.minitab.com/en/adventures-in-statistics-2/understanding-analysis-of-variance-anova-and-the-f-test
+      \endverb
+      \verb{url}
+      \verb https://blog.minitab.com/en/adventures-in-statistics-2/understanding-analysis-of-variance-anova-and-the-f-test
+      \endverb
+    \endentry
+    \entry{phq8qu}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=9871df435f91fc8e7b9b66d93458a477}{%
+           family={Center},
+           familyi={C\bibinitperiod},
+           given={Self-Management\bibnamedelima Resource},
+           giveni={S\bibinithyphendelim M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{9871df435f91fc8e7b9b66d93458a477}
+      \strng{fullhash}{9871df435f91fc8e7b9b66d93458a477}
+      \strng{bibnamehash}{9871df435f91fc8e7b9b66d93458a477}
+      \strng{authorbibnamehash}{9871df435f91fc8e7b9b66d93458a477}
+      \strng{authornamehash}{9871df435f91fc8e7b9b66d93458a477}
+      \strng{authorfullhash}{9871df435f91fc8e7b9b66d93458a477}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://selfmanagementresource.com/wp-content/uploads/English_-_PHQ-8-1.pdf}}
+      \field{note}{Accessed: 2024-12-14}
+      \field{title}{Patient Health Questionnaire-8 (PHQ-8)}
+    \endentry
+    \entry{gfg_f1score}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=f1e069787ece74531d112559945c6871}{%
+           family={GeeksforGeeks},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{f1e069787ece74531d112559945c6871}
+      \strng{fullhash}{f1e069787ece74531d112559945c6871}
+      \strng{bibnamehash}{f1e069787ece74531d112559945c6871}
+      \strng{authorbibnamehash}{f1e069787ece74531d112559945c6871}
+      \strng{authornamehash}{f1e069787ece74531d112559945c6871}
+      \strng{authorfullhash}{f1e069787ece74531d112559945c6871}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.geeksforgeeks.org/f1-score-in-machine-learning/}}
+      \field{note}{Accessed: 2024-12-09}
+      \field{title}{F1 Score in Machine Learning}
+      \field{year}{2021}
+    \endentry
     \entry{homsiang2022classification}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=d793a1aa662fe2f2929eb6d6b43e4c2f}{%
@@ -427,34 +498,44 @@
       \verb https://arxiv.org/abs/2202.08210
       \endverb
     \endentry
-    \entry{tiwari2010mfcc}{article}{}
-      \name{author}{1}{}{%
-        {{hash=a52ef56459d29b199537b67c4eca2c78}{%
-           family={Tiwari},
+    \entry{AU}{article}{}
+      \name{author}{3}{}{%
+        {{hash=61a0f21cce35091c9e84b7d011f524bd}{%
+           family={Tian},
            familyi={T\bibinitperiod},
-           given={Vibha},
-           giveni={V\bibinitperiod}}}%
+           given={Y-I},
+           giveni={Y\bibinithyphendelim I\bibinitperiod}}}%
+        {{hash=45496c6a7530cfbfb4f3218a2602b77e}{%
+           family={Kanade},
+           familyi={K\bibinitperiod},
+           given={Takeo},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5026993934c9ee18842362cd4d17b55e}{%
+           family={Cohn},
+           familyi={C\bibinitperiod},
+           given={Jeffrey\bibnamedelima F},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Citeseer}%
+        {IEEE}%
       }
-      \strng{namehash}{a52ef56459d29b199537b67c4eca2c78}
-      \strng{fullhash}{a52ef56459d29b199537b67c4eca2c78}
-      \strng{bibnamehash}{a52ef56459d29b199537b67c4eca2c78}
-      \strng{authorbibnamehash}{a52ef56459d29b199537b67c4eca2c78}
-      \strng{authornamehash}{a52ef56459d29b199537b67c4eca2c78}
-      \strng{authorfullhash}{a52ef56459d29b199537b67c4eca2c78}
+      \strng{namehash}{ad77a6f73a7e411aacd71457d8e69079}
+      \strng{fullhash}{ad77a6f73a7e411aacd71457d8e69079}
+      \strng{bibnamehash}{ad77a6f73a7e411aacd71457d8e69079}
+      \strng{authorbibnamehash}{ad77a6f73a7e411aacd71457d8e69079}
+      \strng{authornamehash}{ad77a6f73a7e411aacd71457d8e69079}
+      \strng{authorfullhash}{ad77a6f73a7e411aacd71457d8e69079}
       \field{sortinit}{T}
       \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{International journal on emerging technologies}
-      \field{number}{1}
-      \field{title}{MFCC and its applications in speaker recognition}
-      \field{volume}{1}
-      \field{year}{2010}
-      \field{pages}{19\bibrangedash 22}
-      \range{pages}{4}
+      \field{journaltitle}{IEEE Transactions on pattern analysis and machine intelligence}
+      \field{number}{2}
+      \field{title}{Recognizing action units for facial expression analysis}
+      \field{volume}{23}
+      \field{year}{2001}
+      \field{pages}{97\bibrangedash 115}
+      \range{pages}{19}
     \endentry
     \entry{DAICWOZ}{misc}{}
       \name{author}{1}{}{%
@@ -476,6 +557,58 @@
       \field{note}{Accessed: 2024-11-03}
       \field{title}{The Distress Analysis Interview Corpus - Wizard of Oz (DAIC-WOZ)}
       \field{year}{2024}
+    \endentry
+    \entry{wikidct}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2024-12-14}
+      \field{title}{Discrete cosine transform}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb \url{https://en.wikipedia.org/wiki/Discrete_cosine_transform}
+      \endverb
+      \verb{url}
+      \verb %5Curl%7Bhttps://en.wikipedia.org/wiki/Discrete_cosine_transform%7D
+      \endverb
+    \endentry
+    \entry{wiki:mel_frequency_cepstrum}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[Online; accessed 7-December-2024]}
+      \field{title}{Mel-frequency cepstrum --- {Wikipedia}{,} The Free Encyclopedia}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/w/index.php?title=Mel-frequency_cepstrum&oldid=1100609773
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/w/index.php?title=Mel-frequency_cepstrum&oldid=1100609773
+      \endverb
     \endentry
     \entry{WHO_Mental_Disorders_2019}{article}{}
       \name{author}{1}{}{%
@@ -590,7 +723,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{tcc}
 \endrefsection
 \endinput
 
